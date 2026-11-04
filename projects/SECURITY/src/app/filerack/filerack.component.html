@@ -1,0 +1,142 @@
+<!-- header bread crumbs -->
+<div class="container-fluid margin_bottom_20">
+
+    <app-bread-crumbs></app-bread-crumbs>
+
+</div>
+<!-- header bread crumbs -->
+
+<!-- Header title  -->
+<div class="container-fluid margin_bottom_30">
+
+      <div class="container-fluid fluid-bg-1 ishfaak-align-middle ">
+
+          <div class="container">
+
+              <div class="row container_at_1665">
+
+                  <div class="d-flex flex-row">
+                      <div class="d-inline-block">
+                          <div class="d-inline-block padding_right_30">
+                              <img src="/assets/images/admin.svg" class="side_nav_icon_extra_big fill_svg_white">
+                          </div>
+                      </div>
+                      <div class="d-inline-block ">
+                          <h1 class="font_white">File Rack</h1>
+                          <p class="font_white">{{today | date: 'dd MMMM yyyy, hh:mm:ss a'}}</p>
+                      </div>
+                  </div>
+
+              </div>
+
+          </div>
+
+      </div>
+
+</div>
+<!-- Header title  -->
+
+<!-- body graph -->
+<!-- body content -->
+<div class="container-fluid i margin_bottom_53">
+
+    <div class="container">
+      <div class="row container_at_1665">
+        <div class="container">
+        <!-- set -->       
+         <div class="d-flex flex-wrap">
+          <div class="col-xl-4 col-lg-4 col-md-12 margin_bottom_30 padding_right_12"> 
+            <label  class="col-form-label ellipsis form_label_text_width">Contract No</label>
+            <input type="text" class="form-control-plaintext  bg-light border rounded px-2 py-1" [(ngModel)]="contract_no">
+          </div>
+
+          <div class="col-xl-4 col-lg-4 col-md-12 margin_bottom_30 padding_right_12"> 
+            <label class="col-form-label ellipsis form_label_text_width">File Rack No</label>
+            <input type="text" class="form-control-plaintext  bg-light border rounded px-2 py-1" [(ngModel)]="rack_no">
+          </div>
+
+          <!-- <div class="col-xl-4 col-lg-4 col-md-12 margin_bottom_30 padding_right_12"> 
+            <label class="col-form-label ellipsis form_label_text_width">URL</label>
+            <input type="text" class="form-control-plaintext  bg-light border rounded px-2 py-1" [(ngModel)]="url">
+          </div> -->
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 margin_bottom_30 padding_right_12 button-container" >
+          <button flex="33" mat-raised-button color="accent" (click)="SaveMenuItem()">{{btnName}}</button>
+          <button mat-raised-button color="accent" (click)="Clear()">Clear</button> 
+        </div>
+        <br>
+
+        <div class="row common_border box_shadow padding_15 margin_bottom_10">
+          <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+            <label class="col-form-label"><b>Filter your menu</b></label>
+          </div>
+
+          <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
+            <input type="text" class="form-control-plaintext  bg-light border rounded px-2 py-1" [(ngModel)]="searchQuery" (input)="onSearch()" placeholder="Search..." >
+            <!-- <input [(ngModel)]="searchQuery" (input)="onSearch()" placeholder="Search..." /> -->
+          </div>
+        </div>
+
+        <div class="row margin_bottom_15">
+          <div class="example-container mat-elevation-z8">
+            <mat-table #table [dataSource]="dataSource" multiTemplateDataRows matSort #sort="matSort">
+
+              <ng-container matColumnDef="Contract_No">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="width_118 no_header_flx">Contract No </mat-header-cell>
+                <mat-cell *matCellDef="let element" class="width_118 no_header_flx">
+                  <button *ngIf="expandedElement != element">{{element.ContractNo}}</button>
+                </mat-cell>
+              </ng-container> 
+
+              <ng-container matColumnDef="Hirer">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Hirer </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.Hirer}} </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="Vehicle_No">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Vehicle No </mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.VehicleNo}}</mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="Rack_No">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Rack No</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.RackNo}}</mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="edit">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Edit </mat-header-cell>
+                <mat-cell *matCellDef="let element"><button mat-raised-button color="accent" (click)="EditContract(element.ContractNo,element.RackNo)"><span class="material-icons">create</span> </button></mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="expandedDetail">
+                <mat-cell *matCellDef="let detail"></mat-cell>
+              </ng-container>
+
+              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns;" matRipple class="element-row"></mat-row>
+
+            </mat-table>
+            <!-- <mat-paginator
+          [length]="totalRecords"
+          [pageSize]="10"
+          [pageSizeOptions]="[5, 10, 20]"
+          (page)="loadItems($event)">
+        </mat-paginator> -->
+           <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+          </div>
+
+        </div>
+         
+
+        </div>
+        
+      </div>
+    </div>
+  </div>
+      <!-- body graph -->     
+   
+<!-- footer graph -->
+<app-footer class="footer_position"></app-footer>
+<!-- footer graph -->
+  
+
+<app-right-menu></app-right-menu>

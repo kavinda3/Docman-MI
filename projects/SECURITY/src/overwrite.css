@@ -1,0 +1,233 @@
+.padding_30_33 {
+  padding: 30px 33px !important;
+}
+
+.btn {
+  border-radius: 0px !important;
+  height: 38px !important;
+}
+
+.btn-outline-secondary {
+  color: #6c757d;
+  border-color: rgb(205, 212, 218) !important;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #0d6efd !important;
+  border-color: rgb(205, 212, 218) !important;
+  color: white !important;
+}
+
+@media screen and (max-width: 599px) {
+  .mat-toolbar-row,
+  .mat-toolbar-single-row {
+    height: 60px !important;
+  }
+}
+
+.mat-drawer-container,
+.mat-dialog-container {
+  background-color: #fff !important;
+  color: #212529 !important;
+}
+
+.container,
+.container-fluid {
+  width: 100%;
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.mat-toolbar-row,
+.mat-toolbar-single-row {
+  padding: 0 16px !important;
+}
+
+.mat-chip.mat-standard-chip {
+  border: 1px solid #dde3e9;
+  background-color: #fbfbfb;
+  color: #161d2d;
+}
+
+.mat-standard-chip {
+  padding: 18px 16px !important;
+  border-radius: 50px !important;
+  min-height: 32px !important;
+}
+
+.mat-standard-chip:hover {
+  background-color: #0d6efd !important;
+  color: #fff;
+}
+
+.mat-chip-selected {
+  background-color: #0d6efd !important;
+  color: #fff;
+}
+
+.mat-chip.mat-standard-chip a {
+  color: #161d2d !important;
+}
+
+.mat-chip.mat-standard-chip a:hover {
+  color: #fff !important;
+}
+
+.mat-typography h1 {
+  margin: 0 0 0px !important;
+}
+
+.mat-drawer-content {
+  overflow-x: hidden !important;
+}
+
+.mat-dialog-container {
+  overflow: hidden !important;
+}
+
+.mat-drawer {
+  background-color: #161d2d;
+  color: rgba(255, 255, 255, 0.87);
+}
+
+.mat-list-base .mat-list-item {
+  color: rgba(255, 255, 255, 1) !important;
+}
+
+.mat-table {
+  width: 100% !important;
+}
+
+.mat-toolbar {
+  background: #fff;
+  box-shadow: 0px 10px 10px 8px rgb(104 158 226 / 9%),
+    10px 10px 15px -5px #b0b8d6;
+}
+
+.mat-list-item-content {
+  padding: 0 13px;
+}
+
+.mat-body p,
+.mat-body-1 p,
+.mat-typography p {
+  margin: 0 0 0px !important;
+}
+
+.mat-typography h3 {
+  font: 15px/1 "Nirmala" !important;
+  margin: 0px !important;
+}
+
+.left_menu_list_text_padding {
+  padding: 0px 5px 0px 23px;
+}
+
+.mat-typography h2 {
+  margin: 0 0 8px !important;
+}
+
+.mat-icon-button.mat-accent {
+  color: #161d2d;
+}
+
+.form-select {
+  border-radius: 0px !important;
+}
+
+.popover {
+  border: none !important;
+  box-shadow: 0px 10px 10px 8px rgb(104 158 226 / 9%),
+    10px 10px 15px -5px #b0b8d6;
+}
+
+.popover-header {
+  padding: 0rem 0rem !important;
+}
+
+.border_right_none {
+  border-right: none !important;
+}
+
+.popover-body {
+  padding: 0rem 0rem !important;
+}
+/* ---------------------------------------- */
+
+/* ---- Popover min_nav -------------------------  */
+.usr_mi_nav_popover_controll_class,
+.popover {
+  width: 100% !important;
+  max-width: 395px !important;
+}
+
+.usr_mi_nav_popover_controll_class,
+.btn_outline_padding_7 {
+  padding: 7px !important;
+}
+
+.usr_mi_nav_popover_controll_class,
+.popover-header {
+  background-color: #161d2d !important;
+  border-bottom: none !important;
+  border-top-left-radius: 0px !important;
+  border-top-right-radius: 0px !important;
+}
+
+.usr_mi_nav_popover_header_wrapper {
+  padding: 25px 25px 25px 25px !important;
+}
+
+.usr_mi_nav_popover_controll_class,
+.bs-popover-bottom > .popover-arrow::after {
+  border-bottom-color: #161d2d !important;
+}
+
+.usr_mi_nav_popover_controll_class,
+.bs-popover-bottom .popover-header::before {
+  border-bottom: 1px solid #161d2d !important;
+}
+
+.usr_mi_nav_popover_controll_class,
+.margin_bottom_15 {
+  margin-bottom: 15px;
+}
+
+.alert_mi_nav_popover_header_wrapper {
+  padding: 20px 20px 20px 20px !important;
+  background-color: rgb(0, 119, 229) !important;
+}
+/* ---- Popover min_nav -------------------------  */
+
+.width_97 {
+  margin: 0 auto !important;
+  width: 97% !important;
+  position: relative !important;
+  padding: 0px 10px 0px 10px;
+}
+
+.list_with_arrow,
+.list-group-item {
+  padding: 0.5rem 4px !important;
+}
+
+.margin_bottom_60 {
+  margin-bottom: 60px;
+}
+
+.each_row {
+  width: 95%;
+  display: block;
+  clear: both;
+  position: relative;
+}
+
+.line_height_18 {
+  line-height: 18px !important;
+}
+
+.no_btm_border {
+  border: none !important;
+}

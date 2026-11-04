@@ -1,0 +1,116 @@
+<div class="container-fluid margin_bottom_20">
+
+    <!-- header bread crumbs -->
+    <div class="container-fluid margin_bottom_20">
+        <app-bread-crumbs></app-bread-crumbs>
+    </div>
+    <!-- header bread crumbs --> 
+      
+      <!-- Header title  -->
+      <div class="container-fluid margin_bottom_30">   
+          <div class="container-fluid fluid-bg-1 ishfaak-align-middle ">   
+              <div class="container">  
+                  <div class="row container_at_1665">
+                      <div class="d-flex flex-row">
+                          <div class="d-inline-block">
+                              <div class="d-inline-block padding_right_30">
+                                  <img src="/assets/images/admin.svg" class="side_nav_icon_extra_big fill_svg_white">
+                              </div>
+                          </div>
+                          <div class="d-inline-block ">
+                              <h1 class="font_white">Menu Group Details</h1>
+                              <p class="font_white">{{today | date: 'dd MMMM yyyy, hh:mm:ss a'}}</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!-- Header title  -->
+    
+      <!-- body graph -->
+    <div class="container-fluid i margin_bottom_53">
+
+    <div class="container">
+      <div class="row container_at_1665">
+        <div class="container">
+        <!-- set -->          
+        <div class="d-flex justify-content-between flex-wrap">
+          <div class="col-xl-4 col-lg-4 col-md-12 margin_bottom_30 padding_right_12">
+            <div class="width_50_two_columns">
+              <div class="form-group padding_zero_6">
+                <label  class="col-form-label ellipsis form_label_text_width">Menu Group Name</label>
+                <input  type="text" class="form-control" min="1" [(ngModel)]="menugroup_name">
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-4 col-md-12 margin_bottom_30 padding_right_12"></div>
+          <div class="col-xl-4 col-lg-4 col-md-12 margin_bottom_30 padding_right_12"></div>
+                  
+        </div>
+
+        <div class="col-xl-6 col-lg-6 col-md-12 margin_bottom_30 padding_right_12">
+          <button mat-raised-button color="accent" (click)="SaveMenuGroup()">{{btnName}}</button>
+          <button mat-raised-button color="accent" (click)="Clear()">Clear</button> 
+        </div>
+                          
+        <br>
+
+        <div class="row common_border box_shadow padding_15 margin_bottom_10">
+          <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+            <label class="col-form-label"><b>Filter your menu</b></label>
+          </div>
+
+          <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
+            <input type="email" class="form-control" (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+          </div>
+        </div>
+
+        <div class="row margin_bottom_15">
+          <div class="example-container mat-elevation-z8">
+            <mat-table #table [dataSource]="dataSource" multiTemplateDataRows matSort #sort="matSort">
+
+              <ng-container matColumnDef="action">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="width_118 no_header_flx"> No </mat-header-cell>
+                <mat-cell *matCellDef="let element" class="width_118 no_header_flx">
+                  <button *ngIf="expandedElement != element">{{element.MenuGroupID}}</button>
+                </mat-cell>
+              </ng-container> 
+
+              <ng-container matColumnDef="menugroup_name">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Menu Group Name </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.MenuGroupName}} </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="edit">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Edit </mat-header-cell>
+                <mat-cell *matCellDef="let element"><button mat-raised-button color="accent" (click)="EditMenuGroup(element.MenuGroupID)"><span class="material-icons">create</span> </button></mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="expandedDetail">
+                <mat-cell *matCellDef="let detail"></mat-cell>
+              </ng-container>
+
+              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns;" matRipple class="element-row"></mat-row>
+
+            </mat-table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+      <!-- body graph -->     
+</div>
+    
+    <!-- footer graph -->
+    <app-footer class="footer_position"></app-footer>
+    <!-- footer graph -->
+    
+    
+    <app-right-menu></app-right-menu>
+    

@@ -1,0 +1,426 @@
+<div class="container-fluid margin_bottom_20">
+
+  <!-- header bread crumbs -->
+  <div class="container-fluid margin_bottom_20">
+    <app-bread-crumbs></app-bread-crumbs>
+  </div>
+  <!-- header bread crumbs -->
+
+  <!-- Header title  -->
+  <div class="container-fluid margin_bottom_30">
+    <div class="container-fluid fluid-bg-1 ishfaak-align-middle ">
+      <div class="container">
+        <div class="row container_at_1665">
+          <div class="d-flex flex-row">
+            <div class="d-inline-block">
+              <div class="d-inline-block padding_right_30">
+                <img src="/assets/images/admin.svg" class="side_nav_icon_extra_big fill_svg_white">
+              </div>
+            </div>
+            <div class="d-inline-block ">
+              <h1 class="font_white">File Request {{strType}}</h1>
+              <p class="font_white">{{today | date: 'dd MMMM yyyy, hh:mm:ss a'}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Header title  -->
+
+  <!-- body graph -->
+  <div class="container-fluid i margin_bottom_53">
+
+
+    <div class="container">
+      <div class="row container_at_1665">
+        <div class="container">
+          <!-- set -->
+
+          <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-12  padding_right_12">
+              <div class="width_50_two_columns">
+                <div class="form-group padding_zero_6">
+                  <label class="col-form-label ellipsis form_label_text_width">Req No</label>
+                  <!-- <input type="text" class="form-control-plaintext  bg-light border rounded px-2 py-1 text-uppercase"
+                    [disabled]="isDasabled_transferNo" (dblclick)="onDoubleClick()" (keydown.enter)="onSearch()"  (keydown)="onKeyPress($event)"
+                    min="1" [(ngModel)]="req_no" value={{req_no}}> -->
+                     <input type="text" class="form-control-plaintext  bg-light border rounded px-2 py-1 text-uppercase"
+                    [disabled]="isDasabled_transferNo" (dblclick)="onDoubleClick()" (keydown.enter)="onSearch()"
+                    min="1" [(ngModel)]="req_no" value={{req_no}}>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-12 margin_bottom_30 padding_right_12">
+              <div class="width_50_two_columns">
+                <div class="form-group padding_zero_6">
+                  <label class="col-form-label ellipsis form_label_text_width">Date</label>
+                  <!-- <input  type="text" class="form-control-plaintext  bg-light border rounded px-2 py-1" min="1" [(ngModel)]="reciveddate"> -->
+                  <input type="date" style="font-size: 13px"
+                    class="form-control-plaintext  bg-light border rounded px-2 py-1" [disabled]="isDasabled_Date"
+                    [(ngModel)]="reciveddate" value="{{reciveddate}}">
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-12  padding_right_12">
+              <div class="width_50_two_columns">
+                <div class="form-group padding_zero_6">
+                  <label class="col-form-label ellipsis form_label_text_width">Location</label>
+                  <input name="location" type="text" class="form-control-plaintext  bg-light border rounded px-2 py-1"
+                    [disabled]="isDasabled_Loc" (dblclick)="onDoubleLocClick()" (keydown)="onKeyPressLoc($event)"
+                    min="1" [(ngModel)]="location" value={{header.SZLOC_CODE}}>
+                  <br>
+                  <label style="font-size: 11px">{{header.SZLOC_NAME}}</label>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-12 padding_right_12">
+              <div class="width_50_two_columns">
+                <div class="form-group padding_zero_6">
+                  <label class="col-form-label ellipsis form_label_text_width">Req User</label>
+                  <input type="text" class="form-control-plaintext  bg-light border rounded px-2 py-1 text-uppercase"
+                    [disabled]="isDasabled_to_user" min="1" [(ngModel)]="header.SZ_REQ_USER"
+                    value={{header.SZ_REQ_USER}}>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <br>
+            <div class=" mat-elevation-z8">
+              <br>
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <!-- <div class="col-md-3">
+                  <input type="text" [(ngModel)]="searchText" [disabled]="isDasabled_contractNo"
+                    class="form-control-plaintext  bg-light border rounded px-2 py-1 text-uppercase"
+                    placeholder="Search Contract No" (keydown.enter)="submitValue()" (input)="onSearch()" />
+                </div> -->
+                <div class="col-md-3">
+                  <input type="text" [(ngModel)]="searchText" [disabled]="isDasabled_contractNo"
+                    class="form-control-plaintext  bg-light border rounded px-2 py-1 text-uppercase"
+                    placeholder="Search Contract No" (keydown.enter)="submitValue()" (ngModelChange)="onLoadData($event)"  />
+                </div>
+                <div class="col-md-3">
+                  <label>{{vehicleNos}} {{hirer_name}}</label>
+                </div>
+                 <div class="col-md-3">
+                </div>
+                <div class="col-md-3">
+                  <button style="padding-left: 10px;" *ngIf="isDasabled_btnApprove" mat-raised-button color="accent" (click)="allApprove()">{{btnApproveLabel}}</button>
+                </div>
+              </div>
+
+              <br>
+
+              <mat-table #table [dataSource]="DataTable" multiTemplateDataRows matSort>
+
+                <!-- Contract_No Column -->
+                <ng-container matColumnDef="Contract_No">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header class="width_118 no_header_flx">
+                    Contract No
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let item" class="width_118 no_header_flx">
+                    <button>{{ item.strContractNo }}</button>
+                  </mat-cell>
+                </ng-container>
+
+                <!-- Vehicle_No Column -->
+                <ng-container matColumnDef="Vehicle_No">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Vehicle No
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let item">
+                    {{ item.strVehicleNo }}
+                  </mat-cell>
+                </ng-container>
+
+                <!-- Hirer_Name Column -->
+                <ng-container matColumnDef="Hirer_Name">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Hirer Name
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let element">
+                    {{ element.strCustName }}
+                  </mat-cell>
+                </ng-container>
+
+                <!-- Approve Column -->
+                <ng-container matColumnDef="Approve">
+                  <mat-header-cell *matHeaderCellDef>
+                    Approve
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let element">
+                    <mat-checkbox [(ngModel)]="element.CONT_APPROVE" [disabled]="ischkApprove">
+                      {{ element.CONT_APPROVE ? 'Yes' : 'No' }}
+                    </mat-checkbox>
+                  </mat-cell>
+                </ng-container>
+
+                <!-- Remark Column -->
+                <ng-container matColumnDef="Remark">
+                  <mat-header-cell *matHeaderCellDef>
+                    Remark
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let element">
+                    <mat-form-field floatLabel="never" class="input-width">
+                      <input matInput class="custom_inputtext" placeholder="Type" [(ngModel)]="element.REMARK" />
+                    </mat-form-field>
+                  </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="Delete">
+                  <mat-header-cell *matHeaderCellDef class="text-center">
+                    Actions
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let element" class="text-center">
+                    <button mat-icon-button color="warn" (click)="deleteRow(element)" [disabled]="isbuttonDelete" matTooltip="Delete this row">
+                      <mat-icon>delete_forever</mat-icon>
+                    </button>
+                  </mat-cell>
+                </ng-container>
+                <!-- Required Rows -->
+                <mat-header-row *matHeaderRowDef="displayedMainColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedMainColumns;" matRipple class="element-row"></mat-row>
+
+              </mat-table>
+
+              <mat-paginator #paginator3 [pageSizeOptions]="[5, 10]" showFirstLastButtons></mat-paginator>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-12 padding_right_12">
+              <div class="width_50_two_columns">
+                <div class="form-group padding_zero_6">
+                  <label class="col-form-label ellipsis form_label_text_width">Authorize Request</label>
+                  <input class="form-check-input" (change)="onCheckboxChange($event)" type="checkbox"
+                    id="authorizeCheck" [disabled]="isDasabled_authchk" [(ngModel)]="isAuthorize" name="authorizeCheck">
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-12 padding_right_12">
+              <div class="width_50_two_columns">
+                <div class="form-group padding_zero_6">
+                  <label class="col-form-label ellipsis form_label_text_width">Authorize User</label>
+                  <!-- <select  [(ngModel)]="Authorizeuser"  class="form-select form-control-plaintext  bg-light border rounded px-2 py-1" style="font-size: 13px"  [disabled]="isDasabled_Authoriser" > 
+                      <option *ngFor="let option of Authoriser" [ngValue]="option.SZUSERNAME" >{{option.SZUSERNAME}}</option> 
+                    </select> -->
+
+                  <select class="form-select form-control-plaintext  bg-light border rounded px-2 py-1"
+                    style="font-size: 13px" [(ngModel)]="Authorizeuser" [disabled]="isDasabled_Authoriser">
+                    <option *ngFor="let option of Authoriser" [value]="option.SZLOGINNAME">
+                      {{ option.SZLOGINNAME }}
+                    </option>
+                  </select>
+
+
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-12 padding_right_12">
+              <div class="width_50_two_columns">
+                <div class="form-group padding_zero_6">
+                  <div style="color:#0874e4;font-weight: 500;margin-top:40px ;" [innerHTML]="Authstatus"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xl-3 col-lg-3 col-md-12 padding_right_12">
+              <div class="width_50_two_columns">
+                <div class="form-group padding_zero_6">
+                  <label class="col-form-label ellipsis form_label_text_width">BSD Approve</label>
+                  <input class="form-check-input" type="checkbox" id="bsdCheck" [disabled]="isDasabled_bsdchk"
+                    [(ngModel)]="isBSD" name="Check">
+                </div>
+              </div>
+              <div class="width_50_two_columns">
+                <div class="form-group padding_zero_6">
+                  <label class="col-form-label ellipsis form_label_text_width">Transfered</label>
+                  <input class="form-check-input" type="checkbox" id="transferedCheck"
+                    [disabled]="isDasabled_transferedchk" [(ngModel)]="isTransfered" name="Check">
+                </div>
+              </div>
+            </div>
+            <br>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-12 padding_right_12">
+              <div class="width_50_two_columns">
+                <div class="form-group padding_zero_6">
+                  <div style="color:#0874e4;font-weight: 500;" [innerHTML]="status"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 d-flex justify-content-end" *ngIf="isRejectShow">
+              <mat-card class="reject-card shadow-lg rounded-2xl p-3 w-50">
+                <mat-card-header>
+                  <mat-card-title class="text-red-600 text-lg font-semibold">
+                    Reject Reason
+                  </mat-card-title>
+                </mat-card-header>
+
+                <mat-card-content>
+                  <div class="d-flex align-items-center">
+                    <input type="text" class="form-control bg-light border rounded px-2 py-1 me-2 w-100"
+                      [(ngModel)]="reason" placeholder="Enter reason" />
+                    <button *ngIf="isDasabled_btnReject" mat-raised-button color="warn" (click)="clickRejectbutton()">
+                      Reject
+                    </button>
+                  </div>
+                </mat-card-content>
+              </mat-card>
+            </div>
+
+
+
+          </div>
+
+          <br>
+          <br>
+          <div class="col-xl-6 col-lg-6 col-md-6 margin_bottom_30 button-container">
+            <button mat-raised-button color="accent" *ngIf="isDasabled_btnNew" (click)="newClick()">New</button>
+            <button style="padding-left: 10px;" *ngIf="isDasabled_btnEdit" mat-raised-button color="accent"
+              (click)="editClick()">Edit</button>
+            <button style="padding-left: 10px;" *ngIf="isDasabled_btnClear" mat-raised-button color="accent"
+              (click)="Clear()">Clear</button>
+            <button style="padding-left: 10px;" *ngIf="isDasabled_btnPrint" mat-raised-button
+              color="accent" (click)="PrintReport()">Print</button>
+            <button style="padding-left: 10px;" *ngIf="isDasabled_btnCancelRequest" (click)="clickCancelRequestbutton()"
+              mat-raised-button color="accent">Cancel Request</button>
+            <button style="padding-left: 10px;" *ngIf="isDasabled_btnSave" mat-raised-button color="accent"
+              (click)="clickSavebutton()">Save</button>
+          </div>
+
+          <br>
+        </div>
+      </div>
+      <br>
+
+      <!-- body graph -->
+    </div>
+
+  </div>
+  <div *ngIf="isPromptVisible" class="prompt-card">
+    <div class="card">
+      <button type="button" class="btn-close position-absolute top-0 end-0 m-2" aria-label="Close"
+        (click)="closePrompt()"></button>
+      <br>
+      <div class="row common_border box_shadow padding_15 margin_bottom_10">
+        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+          <label class="col-form-label"><b>Filter your menu</b></label>
+        </div>
+
+        <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
+          <input type="email" class="form-control-plaintext  bg-light border rounded px-2 py-1"
+            (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+        </div>
+      </div>
+      <div class="row margin_bottom_15">
+        <div class="example-container mat-elevation-z8">
+          <mat-table #table [dataSource]="dataSourceTRNNo" multiTemplateDataRows matSort #sort="matSort">
+
+            <ng-container matColumnDef="Request_No">
+              <mat-header-cell *matHeaderCellDef mat-sort-header class="width_118 no_header_flx"> Request No
+              </mat-header-cell>
+              <mat-cell *matCellDef="let element" class="width_118 no_header_flx">
+                <button *ngIf="expandedElement != element">{{element.strReqNo}}</button>
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="Request_Date">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Request Date </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.strReqDate}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="Request_User">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Request User </mat-header-cell>
+              <mat-cell *matCellDef="let element">{{element.strReqUser}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="Confirm">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Confirm </mat-header-cell>
+              <mat-cell *matCellDef="let element">{{element.iConfirm}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="Approve">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Approve </mat-header-cell>
+              <mat-cell *matCellDef="let element">{{element.iApprove}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="Transfer">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Transfer </mat-header-cell>
+              <mat-cell *matCellDef="let element">{{element.iTransfer}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="expandedDetail">
+              <mat-cell *matCellDef="let detail"></mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumnsnew"></mat-header-row>
+            <!-- <mat-row *matRowDef="let row; columns: displayedColumnsnew;" matRipple class="element-row"></mat-row> -->
+            <mat-row *matRowDef="let row; columns: displayedColumnsnew;" matRipple class="element-row"
+              [class.selected-row]="row.strReqNo === selectedTrnNo" (click)="onRowClicked(row)">
+            </mat-row>
+          </mat-table>
+          <mat-paginator #paginator1 [pageSizeOptions]="[5, 10]" showFirstLastButtons></mat-paginator>
+          <br>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="isPromptLocVisible" class="prompt-card">
+    <div class="card">
+      <button type="button" class="btn-close position-absolute top-0 end-0 m-2" aria-label="Close"
+        (click)="closeLocPrompt()"></button>
+      <br>
+      <div class="row common_border box_shadow padding_15 margin_bottom_10">
+        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+          <label class="col-form-label"><b>Filter your menu</b></label>
+        </div>
+
+        <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
+          <input type="text" class="form-control-plaintext  bg-light border rounded px-2 py-1"
+            (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+        </div>
+      </div>
+      <div class="row margin_bottom_15">
+        <div class="example-container mat-elevation-z8">
+          <mat-table #table [dataSource]="dataSourceLocation" multiTemplateDataRows matSort #sort="matSort">
+
+
+            <ng-container matColumnDef="Location_Code">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Location Code </mat-header-cell>
+              <mat-cell *matCellDef="let element" class="width_118 no_header_flx">
+                <button *ngIf="expandedElement != element">{{element.strLocCode}}</button>
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="Location_Name">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Location Name </mat-header-cell>
+              <mat-cell *matCellDef="let element">{{element.strLocName}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="expandedDetail">
+              <mat-cell *matCellDef="let detail"></mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedLocColumnsnew"></mat-header-row>
+            <!-- <mat-row *matRowDef="let row; columns: displayedColumnsnew;" matRipple class="element-row"></mat-row> -->
+            <mat-row *matRowDef="let row; columns: displayedLocColumnsnew;" matRipple class="element-row"
+              [class.selected-row]="row.strLocCode === selectedLocationCode" (click)="onRowLocClicked(row)">
+            </mat-row>
+          </mat-table>
+
+          <mat-paginator #paginator2 [pageSizeOptions]="[5, 10]" showFirstLastButtons></mat-paginator>
+          <br>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- footer graph -->
+  <app-footer class="footer_position"></app-footer>
+  <!-- footer graph -->
+
+
+  <app-right-menu></app-right-menu>

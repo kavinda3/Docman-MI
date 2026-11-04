@@ -1,0 +1,609 @@
+
+<div class="container-fluid margin_bottom_20">
+
+    <!-- header bread crumbs -->
+    <div class="container-fluid margin_bottom_20">
+        <app-bread-crumbs></app-bread-crumbs>
+    </div>
+    <!-- header bread crumbs --> 
+      
+      <!-- Header title  -->
+      <div class="container-fluid margin_bottom_30">   
+          <div class="container-fluid fluid-bg-1 ishfaak-align-middle ">   
+              <div class="container">  
+                  <div class="row container_at_1665">
+                      <div class="d-flex flex-row">
+                          <div class="d-inline-block">
+                              <div class="d-inline-block padding_right_30">
+                                  <img src="/assets/images/admin.svg" class="side_nav_icon_extra_big fill_svg_white">
+                              </div>
+                          </div>
+                          <div class="d-inline-block ">
+                              <h1 class="font_white">Doc Handling {{lblstatus}}</h1>
+                              <p class="font_white">{{today | date: 'dd MMMM yyyy, hh:mm:ss a'}}</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!-- Header title  -->
+    
+      <!-- body graph -->
+    <div class="container-fluid i margin_bottom_53">
+
+
+    <div class="container">
+      <div class="row container_at_1665">
+        <div class="container">
+        <!-- set -->   
+        <div class="card" *ngIf="isCardVisible" >
+          <div class="card-content">
+            <div class="row">
+              <div class="col-md-2">
+                <b style="font-size: 13px" class="card-title">File Active Status</b>
+              </div>
+              <div class="col-md-2">
+                <b style="font-size: 15px;color: red;" class="card-title">{{strFileActstatus}}</b>
+              </div>
+              <div class="col-md-2">
+                <mat-checkbox [(ngModel)]="checkactive" (change)="onToggle(checkactive)"><b style="font-size: 13px ;color:#333" >File Active</b></mat-checkbox>
+              </div>
+              <div class="col-md-4">
+                <!-- <b style="font-size: 15px;color: #333;" class="card-title">{{strFileActRemark}}</b> -->
+                 <input *ngIf="isDasabled_fileactRemark"  type="text" class="form-control-plaintext  bg-light border rounded px-2 py-1" min="1" [(ngModel)]="strFileActRemark"  value={{strFileActRemark}}>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4"></div>
+              <div class="col-md-3">
+              <!-- <input *ngIf="isDasabled_fileactRemark"  type="text" class="form-control-plaintext  bg-light border rounded px-2 py-1" min="1" [(ngModel)]="strFileActRemark"  value={{strFileActRemark}}> -->
+              </div>
+            </div>
+          </div>
+      </div>       
+        <div class="d-flex justify-content-between ">
+          <div class="col-xl-3 col-lg-3 col-md-12  padding_right_12">
+            <div class="width_50_two_columns">
+              <div class="form-group padding_zero_6">
+                <label  class="col-form-label ellipsis form_label_text_width ">Contract No</label>
+                <!-- <input type="text" [(ngModel)]="searchText" class="form-control-plaintext  bg-light border rounded px-2 py-1" placeholder="Search contract number" />
+                 <select class="form-select form-control-plaintext  bg-light border rounded px-2 py-1" [(ngModel)]="contractNo"> 
+                    <option selected="selected">--Select Contract No--</option>
+                    <option *ngFor="let option of ContractList" value="{{option.ContractNo}}" >{{option.ContractNo}}</option>
+                </select>  -->
+                <div class="form-group">
+                    <input 
+                      type="text" 
+                      [(ngModel)]="searchText" 
+                      class="form-control-plaintext  bg-light border rounded px-2 py-1 text-uppercase" 
+                      placeholder="Search Contract No"                     
+                      (keydown.enter)="onSearch()"
+                    />
+                  
+                  
+                    <!-- <mat-form-field appearance="fill" >
+                      <mat-select style="font-size: 13px;" [(ngModel)]="contractNo"(input)="onSearch()" (selectionChange)="onLoadData(contractNo)" >
+                        <cdk-virtual-scroll-viewport  itemSize="40" [style.height]="'200px'">
+                          <mat-option style="font-size: 13px;" *cdkVirtualFor="let option of filteredContractList" [value]="option.ContractNo" >
+                            {{ option.ContractNo }}
+                          </mat-option>
+                        </cdk-virtual-scroll-viewport>                          
+                      </mat-select>
+                    </mat-form-field> -->
+                  </div>
+                  
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-3 col-md-12 padding_right_12">
+            <div class="width_50_two_columns">
+              <div class="form-group padding_zero_6">
+                <label  class="col-form-label ellipsis form_label_text_width">Customer Name</label>
+                <input  [readonly]=true  type="text" class="form-control-plaintext  bg-light border rounded px-2 py-1" min="1" [(ngModel)]="customer_name" value={{customer_name}}>
+              </div>
+              <div class="form-group padding_zero_6">
+                <label  class="col-form-label ellipsis form_label_text_width">Last User</label>
+                <input  type="text" class="form-control-plaintext  bg-light border rounded px-2 py-1-plaintext  bg-light border rounded px-2 py-1 readonly" min="1"  [readonly]="true" [(ngModel)]="last_user" value={{last_user}}>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-3 col-md-12 margin_bottom_30 padding_right_12">
+            <div class="width_50_two_columns">
+              <div class="form-group padding_zero_6">
+                <label  class="col-form-label ellipsis form_label_text_width">Vehicle No</label>
+                <!-- <select *ngIf="isvisibleSelectVehNoCmb" class="form-select bg-light border rounded px-2 py-1" style="font-size: 13px;" [(ngModel)]="vehicleNo" (change)="onGetAllData()"  (change)="newVehicleenter()"> 
+                  <option style="font-size: 13px;" *ngFor="let option of DataTable" value="{{option.VehicleNo}}" >{{option.VehicleNo}}</option>                  
+                </select>   
+                <input *ngIf="isvisibleSelectVehNoText"  type="text"  class="form-control-plaintext  bg-light border rounded px-2 py-1 readonly text-uppercase"  min="1"  [(ngModel)]="vehicleNo" value={{vehicleNo}} (keydown.enter)="onGetAllData()"> -->
+               <select *ngIf="isvisibleSelectVehNoCmb" class="form-select bg-light border rounded px-2 py-1" style="font-size: 13px;" [(ngModel)]="vehicleNo" (change)="onGetAllData('edit')"  (change)="newVehicleenter()"> 
+                  <option style="font-size: 13px;" *ngFor="let option of DataTable" value="{{option.VehicleNo}}" >{{option.VehicleNo}}</option>                  
+                </select> 
+              
+                <input
+                    *ngIf="isvisibleSelectVehNoText"
+                    type="text"
+                    list="vehicleList"
+                    class="form-control-plaintext bg-light border rounded px-2 py-1 readonly text-uppercase"
+                    [(ngModel)]="vehicleNo"
+                    (keydown.enter)="onGetAllData('new')"
+                />
+
+                <datalist id="vehicleList">
+                    <option *ngFor="let option of DataTable"
+                            [value]="option.VehicleNo">
+                    </option>
+                </datalist>
+                <input *ngIf="selectedValuedrp === 'custom'"  [(ngModel)]="newVehicleNo"  placeholder="New Vehicle No"> 
+                <div class="form-group padding_zero_6">
+                  <label  class="col-form-label ellipsis form_label_text_width">Rack No</label>
+                  <input  type="text" class="form-control-plaintext  bg-light border rounded px-2 py-1 readonly" min="1"  [readonly]="true" [(ngModel)]="rackno" value={{rackno}}>
+                </div>                               
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-3 col-md-12 margin_bottom_30 padding_right_12">
+            <div class="width_50_two_columns">
+              <div class="form-group padding_zero_6">
+                <label  class="col-form-label ellipsis form_label_text_width">File Location</label>
+                <!-- <select class="form-select form-control-plaintext  bg-light border rounded px-2 py-1" style="font-size: 13px"  [disabled]="isDasabled_fileloc" > 
+                   <option *ngFor="let option of Location" [(ngModel)]="fileLocation" value="{{option.strLocName}}" >{{option.strLocName}}</option>
+                 </select> -->
+                  <!-- <input  type="text" class="form-control-plaintext  bg-light border rounded px-2 py-1 readonly" min="1"  [readonly]="true" [(ngModel)]="fileLocation" > -->
+                   <select 
+                        class="form-select form-control-plaintext bg-light border rounded px-2 py-1" 
+                        
+                        style="font-size: 13px"  
+                        [(ngModel)]="loccode" 
+                       >
+
+                        <option value="">-- Select Location --</option>
+                        <option *ngFor="let option of Location" [value]="option.strLocCode">
+                          {{ option.strLocName }}
+                        </option>
+                      </select>
+              </div>
+              <div hidden class="form-group padding_zero_6">
+                <label  class="col-form-label ellipsis form_label_text_width">Scanned</label>
+                 <!-- <input class="form-check-input" type="checkbox" id="checkScanned"  [(ngModel)]="checkscaned"> -->
+                <mat-checkbox class="always-visible-checkbox" [(ngModel)]="checkscaned"></mat-checkbox>
+              </div>     
+            </div>
+          </div>          
+           
+        </div>
+      
+        <div class="card flex-wrap margin_bottom_30"  style="background-color: #b0bec5;" >
+            <div class="card-body">
+                <div class="d-flex justify-content-between ">
+                    <div class="col-xl-3 col-lg-3 col-md-12 padding_right_12">
+                      <div class="width_50_two_columns">
+                        <div class="form-group padding_zero_6">
+                          <label  class="col-form-label ellipsis form_label_text_width">Hirer Name</label>
+                          <input  type="text" class="form-control-plaintext  bg-light border rounded px-2 py-1" min="1" [(ngModel)]="hirername">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-12 padding_right_12">
+                      <div class="width_50_two_columns">
+                        <div class="form-group padding_zero_6">
+                          <label  class="col-form-label ellipsis form_label_text_width">Vehicle Type</label>
+                          <!-- <input  type="text" class="form-control-plaintext  bg-light border rounded px-2 py-1" min="1" [(ngModel)]="vehicle_type"> -->
+                          <!-- <select style="font-size: 13px;" class="form-select form-control-plaintext  bg-light border rounded px-2 py-1"  [(ngModel)]="vehicle_type"> 
+                            <option style="font-size: 13px;" *ngFor="let option of VehicleTypeList"  value="{{option.Vehicle_type}}" >{{option.Vehicle_type}}</option>
+                          </select>    -->
+                     <select style="font-size: 13px;"
+                          class="form-select form-control-plaintext bg-light border rounded px-2 py-1"
+                          [(ngModel)]="vehicle_type">
+
+                          <option *ngIf="vehicle_type && !vehicleTypeExists()"
+                                  [value]="vehicle_type">
+                            {{ vehicle_type }}
+                          </option>
+ 
+                          <option  *ngFor="let option of VehicleTypeList"
+                                  [value]="option.Vehicle_type">
+                            {{ option.Vehicle_type }}
+                          </option>
+
+                        </select>
+                          
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-12  padding_right_12">
+                      <div class="width_50_two_columns">
+                        <div class="form-group padding_zero_6">
+                          <label  class="col-form-label ellipsis form_label_text_width">Activated Date</label>
+                          <input type="date" class="form-control-plaintext  bg-light border rounded px-2 py-1"  [(ngModel)]="activated_date">  
+                          <!-- <input  type="text" class="form-control-plaintext  bg-light border rounded px-2 py-1" min="1" [(ngModel)]="activated_date"> -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-12  padding_right_12">
+                      <div class="width_50_two_columns">
+                        <div class="form-group padding_zero_6">
+                          <label  class="col-form-label ellipsis form_label_text_width">Received</label>
+                          <!-- <input  type="text" class="form-control-plaintext  bg-light border rounded px-2 py-1" min="1" [(ngModel)]="reciveddate"> -->
+                              <select class="form-control" [(ngModel)]="fileStatus" (ngModelChange)="onFileStatusChange($event)">
+                              <option value="FILE">FILE</option>
+                              <option value="CR">CR</option>
+                            </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="d-flex ">
+                    <div class="col-xl-3 col-lg-3 col-md-12 padding_right_12">
+                      <div class="width_50_two_columns">
+                        <div class="form-group padding_zero_6">
+                          <label  class="col-form-label ellipsis form_label_text_width">Dummy File Creation Date</label>
+                          <!-- <input  type="text" class="form-control-plaintext  bg-light border rounded px-2 py-1" min="1" [(ngModel)]="dummyfile_creationdate"> -->
+                          <input type="date" class="form-control-plaintext  bg-light border rounded px-2 py-1"  [(ngModel)]="dummyfile_creationdate">    
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="col-xl-3 col-lg-3 col-md-12  padding_right_12">
+                      <div class="width_50_two_columns">
+                        <div class="form-group padding_zero_6">
+                          <label  class="col-form-label ellipsis form_label_text_width">Credit Officer</label>
+                          <input  type="text" class="form-control-plaintext  bg-light border rounded px-2 py-1 text-uppercase " min="1" [(ngModel)]="credit_officer">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-12 padding_right_12">
+                      <div class="width_50_two_columns">
+                        <div class="form-group padding_zero_6">
+                          <label  class="col-form-label ellipsis form_label_text_width">Remarks</label>
+                          <input  type="text" class="form-control-plaintext  bg-light border rounded px-2 py-1" min="1" [(ngModel)]="remark">
+                        </div>
+                      </div>
+                    </div> 
+                    <!-- <div class="col-xl-3 col-lg-3 col-md-12  padding_right_12">
+                      <div class="width_50_two_columns">
+                        <div class="form-group padding_zero_6">
+                          <label  class="col-form-label ellipsis form_label_text_width">Received Date</label>
+                          <input type="date" class="form-control  bg-light border rounded px-2 py-1"  [(ngModel)]="reciveddate">  
+                        </div>
+                      </div>
+                    </div>                    -->
+                  <div class="col-xl-3 col-lg-3 col-md-12 padding_right_12">
+  <div class="row">
+
+    <!-- File Received Date -->
+    <div class="col-6 padding_zero_6">
+      <div class="form-group">
+        <label class="col-form-label form_label_text_width">
+          File Received Date
+        </label>
+        <input
+          type="date"
+          class="form-control bg-light border rounded px-2 py-1"
+          [(ngModel)]="reciveddate">
+      </div>
+    </div>
+
+    <!-- CR Received Date -->
+    <div class="col-6 padding_zero_6">
+      <div class="form-group">
+        <label class="col-form-label form_label_text_width">
+          CR Received Date
+        </label>
+        <input
+          type="date" [disabled]="isDisabled_crrecdate"
+          class="form-control bg-light border rounded px-2 py-1"
+          [(ngModel)]="crReceivedDate" >
+      </div>
+    </div>
+
+  </div>
+</div>
+                  </div>
+            </div>
+          </div>      
+          <mat-accordion>
+            <mat-expansion-panel [expanded]="false" style="background: linear-gradient(145deg, #f1f1f1, #d0d0d0);color:black">
+              <mat-expansion-panel-header>
+                <mat-panel-title style="color:rgb(54, 54, 54);">
+                  Document Issue Details
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+          
+              <div class="d-flex justify-content-between ">
+                    <div class="col-xl-3 col-lg-3 col-md-12 padding_right_12">
+                      <div class="width_50_two_columns">
+                        <div class="form-group padding_zero_6">
+                          <label  class="col-form-label ellipsis form_label_text_width">Issued to</label>
+                          <input  type="text" class="form-control-plaintext  bg-light border rounded px-2 py-1" min="1" [(ngModel)]="issued_to">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-12 padding_right_12">
+                      <div class="width_50_two_columns">
+                        <div class="form-group padding_zero_6">
+                           <label  class="col-form-label ellipsis form_label_text_width">Last Issued Date</label>
+                          <input type="date" class="form-control-plaintext  bg-light border rounded px-2 py-1"  [(ngModel)]="lastIssued_date">  
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="col-xl-3 col-lg-3 col-md-12  padding_right_12">
+                      <div class="width_50_two_columns">
+                        <div class="form-group padding_zero_6">                          
+                          <label  class="col-form-label ellipsis form_label_text_width">Last Return Date</label>
+                          <input type="date" class="form-control-plaintext  bg-light border rounded px-2 py-1"  [(ngModel)]="lastrtn_date">  
+                          <!-- <input  type="text" class="form-control-plaintext  bg-light border rounded px-2 py-1" min="1" [(ngModel)]="activated_date"> -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-12  padding_right_12">
+                      <div class="width_50_two_columns">
+                        <div class="form-group padding_zero_6">
+                          <label  class="col-form-label ellipsis form_label_text_width">Issued Remark</label>
+                          <textarea class="form-control bg-light border rounded px-2 py-1" rows="3" [(ngModel)]="issueRemark"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                   <div class="d-flex ">
+                    <div class="col-xl-3 col-lg-3 col-md-12 padding_right_12">
+                      <div class="width_50_two_columns">
+                        <div class="form-group padding_zero_6">
+                          <label  class="col-form-label ellipsis form_label_text_width">Invoice Doc Status</label>
+                          <!-- <input  type="text" class="form-control-plaintext  bg-light border rounded px-2 py-1" min="1" [(ngModel)]="dummyfile_creationdate"> -->
+                          <mat-radio-group [(ngModel)]="selectedDocStatus" class="radio-group">
+                            <mat-radio-button value="IN">IN</mat-radio-button>
+                            <mat-radio-button value="OUT">OUT</mat-radio-button>
+                          </mat-radio-group>
+                        </div>
+                      </div>
+                    </div>
+                   </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+          <br>
+        <!-- <div class="col-xl-6 col-lg-6 col-md-12 margin_bottom_30  padding_right_12">
+          <button mat-raised-button color="accent" (click)="SaveProduct()">{{btnName}}</button>
+          <button mat-raised-button color="accent" (click)="Clear()">Clear</button> 
+        </div> -->
+       <div class="table-container">
+
+  <mat-table #table [dataSource]="dataSourceTable" multiTemplateDataRows matSort #sort="matSort">
+          <ng-container matColumnDef="doccode">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="no_header_flx" > Code </mat-header-cell>
+            <mat-cell *matCellDef="let element" class="no_header_flx">
+              <button *ngIf="expandedElement != element" style="font-size: 10px;" >{{element.DocCode}}</button>
+            </mat-cell>
+          </ng-container> 
+
+          <ng-container matColumnDef="docname">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Doc Name  </mat-header-cell>
+            <mat-cell *matCellDef="let element" style="font-size: 10px;" [(ngModel)]="element.DocName">{{element.DocName}}</mat-cell>
+          </ng-container>
+          
+            <!-- <ng-container matColumnDef="status">
+              <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <mat-select style="font-size: 10px;" [(value)]="element.Status" [(ngModel)]="element.Status" placeholder="" class="mat-select-table">
+                  <mat-option value="Error">OK</mat-option>
+                  <mat-option value="CMT52">N/R</mat-option>
+                  <mat-option value="Other">INCOMPLETE</mat-option>
+                  <mat-option value="Other">PENDING</mat-option>
+                  <mat-option value="Other">BANK</mat-option>
+                </mat-select>
+              </mat-cell>
+            </ng-container> -->
+          <!-- <ng-container matColumnDef="status">
+
+  <mat-header-cell *matHeaderCellDef>
+    Status
+  </mat-header-cell>
+
+  <mat-cell *matCellDef="let element; index as rowIndex">
+
+    <mat-select
+      #statusSelect
+      style="font-size: 10px;"
+      [(ngModel)]="element.Status"
+      class="mat-select-table"
+      (keydown)="onStatusKeyDown($event, rowIndex)"
+    >
+
+      <mat-option value="OK">OK</mat-option>
+      <mat-option value="N/R">N/R</mat-option>
+      <mat-option value="INCOMPLETE">INCOMPLETE</mat-option>
+      <mat-option value="PENDING">PENDING</mat-option>
+      <mat-option value="BANK">BANK</mat-option>
+      <mat-option value="Error">Error</mat-option>
+
+    </mat-select>
+
+  </mat-cell>
+
+</ng-container> -->
+          <ng-container matColumnDef="status">
+  <mat-header-cell  *matHeaderCellDef> Status </mat-header-cell>             
+  <mat-cell *matCellDef="let element">
+    
+    <mat-select
+      #statusSelect
+      style="font-size: 10px;"
+      [(ngModel)]="element.Status"   
+      class="mat-select-table"  
+      (keydown.tab)="onTab($any($event), statusSelect)"> <mat-option value="OK">OK</mat-option>
+      <mat-option value="N/R">N/R</mat-option>
+      <mat-option value="INCOMPLETE">INCOMPLETE</mat-option>
+      <mat-option value="PENDING">PENDING</mat-option>
+      <mat-option value="BANK">BANK</mat-option>
+      <mat-option value="Error">Error</mat-option>
+
+    </mat-select>
+  </mat-cell>
+</ng-container>
+          <ng-container matColumnDef="statusremark" >
+            <mat-header-cell *matHeaderCellDef > Status Remark </mat-header-cell>
+            <mat-cell *matCellDef="let element; let rowIndex = index" >
+              <mat-form-field floatLabel="never" class="input-width2">
+                <input 
+                  matInput
+                  #inputRef
+                  class="custom_inputtext"
+                  
+                  [(ngModel)]="element.RemarkofFile"
+                  (keydown.tab)="onTabPress($event, rowIndex, 'statusremark')"
+                  [attr.data-row]="rowIndex"
+                  data-column="statusremark"
+                />
+                <!-- <textarea
+                  matInput
+                  #inputRef
+                  class="custom_inputtext"
+                  rows="3"
+                  [(ngModel)]="element.RemarkofFile"
+                  (keydown.tab)="onTabPress($event, rowIndex, 'statusremark')"
+                  [attr.data-row]="rowIndex"
+                  data-column="statusremark">
+                </textarea> -->
+              </mat-form-field>
+            </mat-cell>
+          </ng-container>
+
+
+
+          <!-- <ng-container matColumnDef="cmtdate">
+            <mat-header-cell *matHeaderCellDef>CMT Date</mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <mat-form-field floatLabel="never" class="input-width">
+                <input 
+                  matInput 
+                  [matDatepicker]="picker" 
+                  [(ngModel)]="element.CmtDate" 
+                  placeholder="Select Date" 
+                  (click)="picker.open()" 
+                >
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field> 
+            </mat-cell>
+          </ng-container> -->
+         <ng-container matColumnDef="cmtdate">
+          <mat-header-cell *matHeaderCellDef>CMT Date</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <mat-form-field  floatLabel="never" class="input-width">
+              <input 
+                matInput 
+                [matDatepicker]="picker" 
+                [(ngModel)]="element.CmtDate" 
+              >
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </mat-cell>
+        </ng-container>
+         
+          <ng-container matColumnDef="Errors/CMT52">
+            <mat-header-cell *matHeaderCellDef> Errors/CMT52 </mat-header-cell>
+            <mat-cell *matCellDef="let element; let rowIndex = index">
+              <!-- Removed the mat-form-field wrapper to remove the box -->
+              <mat-select style="font-size: 10px;"  [(value)]="element.Errors" placeholder="" class="mat-select-table">
+                <mat-option value=""></mat-option>
+                <mat-option value="Error">Error</mat-option>
+                <mat-option value="CMT52">CMT52</mat-option>
+                <mat-option value="Other">Other</mat-option>
+              </mat-select>
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="DOCIsuuedDate">
+  <mat-header-cell *matHeaderCellDef>DOC Issued Date</mat-header-cell>
+  <mat-cell *matCellDef="let element; let rowIndex = index">          
+    <mat-form-field floatLabel="never" class="input-width">
+      <input 
+      #dateInput
+        id="date-input-{{rowIndex}}"
+        matInput 
+        [matDatepicker]="picker" 
+        [(ngModel)]="element.DOCIsuuedDate" 
+        (keydown.tab)="onTabDate($event, dateInput)"
+      >
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field> 
+  </mat-cell>
+</ng-container>
+          <ng-container matColumnDef="DOCIsuuedtoName">
+            <mat-header-cell *matHeaderCellDef> DOC Isuued to Name </mat-header-cell>
+            <mat-cell *matCellDef="let element; let rowIndex = index">
+              <mat-form-field floatLabel="never" class="input-width">
+                <input matInput  #inputRef data-column="DOCIsuuedtoName" class="custom_inputtext" (keydown.tab)="onTabPress($event, rowIndex, 'DOCIsuuedtoName')"  [attr.data-row]="rowIndex" [value]="element.IssuedToName" [(ngModel)]="element.IssuedToName">
+              </mat-form-field>
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="IssuedRemark">
+            <mat-header-cell *matHeaderCellDef> Isuued Remark </mat-header-cell>
+            <mat-cell *matCellDef="let element; let rowIndex = index">
+              <mat-form-field floatLabel="never" class="input-width">
+                <input matInput  #inputRef class="custom_inputtext" [value]="element.IssuedRemark" [(ngModel)]="element.IssuedRemark" [attr.data-row]="rowIndex"
+                  data-column="IssuedRemark"  (keydown.tab)="onTabPress($event, rowIndex, 'IssuedRemark')">
+              </mat-form-field>
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="DOCReturnDate">
+            <mat-header-cell *matHeaderCellDef> DOC Return Date</mat-header-cell>
+            <mat-cell *matCellDef="let element">             
+              <mat-form-field floatLabel="never" class="input-width">
+                <input 
+                  matInput 
+                  [matDatepicker]="picker" 
+                  [(ngModel)]="element.DOCReturnDate" 
+                 
+                  
+                >
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field> 
+            </mat-cell>
+          </ng-container>
+                   
+          <ng-container matColumnDef="expandedDetail">
+            <mat-cell *matCellDef="let detail"></mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;" matRipple class="element-row"></mat-row>
+
+        </mat-table>            
+      
+         <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+</div>
+        <br>
+      </div>
+      <div class="col-xl-3 col-lg-3 col-md-6 margin_bottom_30 button-container">
+        <button mat-raised-button color="accent"  (click)="NewClick()" *ngIf="isDasabled_btnNew" >New</button>
+        <button style="padding-left: 10px;" mat-raised-button color="accent" *ngIf="isDasabled_btnDelete" (click)="DeleteClick()" >Delete</button> 
+        <button style="padding-left: 10px;" mat-raised-button color="accent" *ngIf="isDasabled_btnEdit" (click)="EditClick()" >Edit</button> 
+        <button mat-raised-button color="accent" (click)="PrintClick()" >Print</button>
+        <button style="padding-left: 10px;" mat-raised-button color="accent" (click)="Clear()">Clear</button> 
+         <button style="padding-left: 10px;" mat-raised-button color="accent" (click)="SaveDocDetails()" *ngIf="isvisibleSavebtn">Save</button> 
+      </div>
+      <div class="col-xl-6 col-lg-6 col-md-12 margin_bottom_30 button-container" >
+        
+      </div>
+      <br>
+    </div>   
+  </div>
+  <br>
+
+      <!-- body graph -->     
+    </div>
+
+
+</div>
+    
+    <!-- footer graph -->
+    <app-footer class="footer_position"></app-footer>
+    <!-- footer graph -->
+    
+    
+    <app-right-menu></app-right-menu>
+    

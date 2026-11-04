@@ -1,0 +1,133 @@
+<div class="container-fluid margin_bottom_20">
+
+    <!-- header bread crumbs -->
+    <div class="container-fluid margin_bottom_20">
+        <app-bread-crumbs></app-bread-crumbs>
+    </div>
+    <!-- header bread crumbs --> 
+      
+      <!-- Header title  -->
+      <div class="container-fluid margin_bottom_30">   
+          <div class="container-fluid fluid-bg-1 ishfaak-align-middle ">   
+              <div class="container">  
+                  <div class="row container_at_1665">
+                      <div class="d-flex flex-row">
+                          <div class="d-inline-block">
+                              <div class="d-inline-block padding_right_30">
+                                  <img src="/assets/images/admin.svg" class="side_nav_icon_extra_big fill_svg_white">
+                              </div>
+                          </div>
+                          <div class="d-inline-block ">
+                              <h1 class="font_white">Docman Reports</h1>
+                              <p class="font_white">{{today | date: 'dd MMMM yyyy, hh:mm:ss a'}}</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!-- Header title  -->
+    
+      <!-- body graph -->
+    <div class="container-fluid i margin_bottom_53">
+
+    <div class="container">
+      <div class="row container_at_1665">
+        <div class="container">
+        <!-- set -->          
+        <div class="d-flex justify-content-between flex-wrap">
+          <div class="col-xl-3 col-lg-3 col-md-12 margin_bottom_30 padding_right_12">
+            <div class="width_50_two_columns">
+              <div class="form-group padding_zero_6">
+                 <!-- <label  class="col-form-label ellipsis form_label_text_width">Report Name</label>
+                <select style="font-size: 13px;" class="form-select form-control-plaintext  bg-light border rounded px-2 py-1-plaintext  bg-light border rounded px-2 py-1" [(ngModel)]="reportType" > 
+                    <option selected="selected" value="01. Original Files - Valuation / Invoice Pending1">01. Original Files - Valuation / Invoice Pending</option>
+                    <option selected="selected" value="02. Orginal Files CR Pending">02. Orginal Files CR Pending</option>
+                    <option selected="selected" value="03. Original Files - Other Mistakes" >03. Original Files - Other Mistakes</option>
+                    <option selected="selected" value="04. Original Files NOT Received to File Room ">04. Original Files NOT Received to File Room </option>
+                    <option selected="selected" value="05. Tax Receipts">05. Tax Receipts </option>
+                    <option selected="selected" value="06. Revenue Licence">06. Revenue Licence</option>
+                    <option selected="selected" value="07. Spare Key">07. Spare Key </option>
+                    <option selected="selected" value="08. Purchase Order">08. Purchase Order</option>
+                    <option selected="selected" value="09. VIC - Vehicle Identification Card">09. VIC - Vehicle Identification Card</option>
+                    <option selected="selected" value="10. Issued Files">10. Issued Files  </option>
+                    <option selected="selected" value="11. Active Files">11. Active Files</option>
+                    <option selected="selected" value="12. Close Files">12. Close Files </option>
+                    <option selected="selected" value="13.Received Files">13.Received Files</option>
+                    <option selected="selected" value="14. File History">14. File History</option>
+                    <option selected="selected" value="15.Active Files filter by CR-Status">15.Active Files filter by CR-Status</option>
+                  </select> -->
+                  
+                    <label class="col-form-label ellipsis form_label_text_width">Report Name</label>
+                    <select class="form-select form-control-plaintext bg-light border rounded px-2 py-1" style="font-size: 13px"
+                      [(ngModel)]="reportType">
+                      <option *ngFor="let option of RptType" [value]="option.IRPTID">
+                        {{ option.SZRPTNAME }}
+                      </option>
+                    </select>
+                
+              </div> 
+                 
+               <div class="form-group padding_zero_6"  *ngIf="reportType?.substring(0,2) === '14'">
+                <label  class="col-form-label ellipsis form_label_text_width">Contract No</label>
+                <input type="text" class="form-control-plaintext  bg-light border rounded px-2 py-1"  [(ngModel)]="contractNo">  
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-3 col-md-12 margin_bottom_30 padding_right_12">
+            <div class="width_50_two_columns">
+              <div class="form-group padding_zero_6" *ngIf="reportType?.substring(0,2) === '01'||reportType?.substring(0,2) === '02'||reportType?.substring(0,2) === '03'||reportType?.substring(0,2) === '04'||reportType?.substring(0,2) === '05'||reportType?.substring(0,2) === '06'||reportType?.substring(0,2) === '07'||reportType?.substring(0,2) === '08'||reportType?.substring(0,2) === '09'||reportType?.substring(0,2) === '10'||reportType?.substring(0,2) === '11'||reportType?.substring(0,2) === '12'||reportType?.substring(0,2) === '13'||reportType?.substring(0,2) === '15'">
+                <label  class="col-form-label ellipsis form_label_text_width">Doc From date</label>
+                <input type="date" class="form-control-plaintext  bg-light border rounded px-2 py-1"  [(ngModel)]="fromdate">  
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-3 col-md-12 margin_bottom_30 padding_right_12" *ngIf="reportType?.substring(0,2) === '01'||reportType?.substring(0,2) === '02'||reportType?.substring(0,2) === '03'||reportType?.substring(0,2) === '04'||reportType?.substring(0,2) === '05'||reportType?.substring(0,2) === '06'||reportType?.substring(0,2) === '07'||reportType?.substring(0,2) === '08'||reportType?.substring(0,2) === '09'||reportType?.substring(0,2) === '10'||reportType?.substring(0,2) === '11'||reportType?.substring(0,2) === '12'||reportType?.substring(0,2) === '13'||reportType?.substring(0,2) === '15'">
+            <div class="width_50_two_columns"  >
+              <div class="form-group padding_zero_6">
+                <label  class="col-form-label ellipsis form_label_text_width">Doc To Date</label>
+                <input type="date" class="form-control-plaintext  bg-light border rounded px-2 py-1"  [(ngModel)]="todate">  
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-3 col-md-12 margin_bottom_30 padding_right_12" *ngIf="reportType?.substring(0,2) === '01'||reportType?.substring(0,2) === '02'||reportType?.substring(0,2) === '03'||reportType?.substring(0,2) === '04'||reportType?.substring(0,2) === '05'||reportType?.substring(0,2) === '06'||reportType?.substring(0,2) === '07'||reportType?.substring(0,2) === '08'||reportType?.substring(0,2) === '09'||reportType?.substring(0,2) === '10'||reportType?.substring(0,2) === '11'||reportType?.substring(0,2) === '12'||reportType?.substring(0,2) === '13'">
+         
+          </div>
+            <div class="col-xl-3 col-lg-3 col-md-12 margin_bottom_30 padding_right_12" *ngIf="reportType?.substring(0,2) === '15'">
+            <div class="width_50_two_columns">
+              <div class="form-group padding_zero_6">
+                <label  class="col-form-label ellipsis form_label_text_width">CR Status</label>
+                <select style="font-size: 13px;" class="form-select form-control-plaintext  bg-light border rounded px-2 py-1-plaintext  bg-light border rounded px-2 py-1" [(ngModel)]="crstatus" > 
+                    <option selected="selected">OK</option>
+                    <option selected="selected">N/R </option>
+                     <option selected="selected">INCOMPLETE</option>
+                    <option selected="selected">PENDING </option>
+                     <option selected="selected">BANK </option>
+                  </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div  class="col-xl-6 col-lg-6 col-md-12 margin_bottom_30 padding_right_12 button-container">
+          <button mat-raised-button color="accent" (click)="PrintReport()">Print</button>
+          <button  mat-raised-button color="accent" >Cancel</button> 
+        </div>            
+        <br>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="isLoading" class="text-info mt-2">
+    <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+    Loading report, please wait...
+  </div>
+      <!-- body graph -->     
+</div>
+    
+    <!-- footer graph -->
+    <app-footer class="footer_position"></app-footer>
+    <!-- footer graph -->
+    
+    
+    <app-right-menu></app-right-menu>
+    
+

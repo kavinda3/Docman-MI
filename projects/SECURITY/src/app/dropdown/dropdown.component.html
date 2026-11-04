@@ -1,0 +1,22 @@
+<div class="form-group">
+    <input 
+      type="text" 
+      [(ngModel)]="searchText" 
+      class="form-control" 
+      placeholder="Search Contract No"
+      (input)="onSearch()"
+    />
+  
+  
+    <mat-form-field appearance="fill" >
+        <mat-label>Select Contract No</mat-label>
+        <mat-select [(ngModel)]="contractNo"(input)="onSearch()">
+          <cdk-virtual-scroll-viewport itemSize="40" class="example-viewport" [style.height]="'200px'">
+            <mat-option *cdkVirtualFor="let option of filteredContractList" [value]="option.ContractNo">
+              {{ option.ContractNo }}
+            </mat-option>
+          </cdk-virtual-scroll-viewport>
+        </mat-select>
+      </mat-form-field>
+  </div>
+  

@@ -1,0 +1,190 @@
+<mat-sidenav-container class="example-container">
+
+  <!-- side navigation -->
+  <mat-sidenav class="example-events" #sidenav [mode]="mode" [opened]="opened" (opened)="events.push('open!')" (closed)="events.push('close!')" role="navigation">
+
+          <!-- enable this after routing sorted -->
+          <div class="row avatar_bg">
+
+              <div class="text-center position_avatar resize_img">
+                    <img src="/assets/images/mercantile_investments_logo.png" class="avatar_force_img_height">
+              </div>
+
+              <div class="row text-center">
+                  <div class="d-flex flex-column">
+                      <div class="d-flex justify-content-center">
+                          <h2 class="font_white">Welcome</h2>
+                      </div>
+                       
+                      <div class="d-flex justify-content-center">
+                          <p class="font_white padding_bottom_23 avatar_big_name_text_width ellipsis">User : {{Username}}</p>
+                      </div>
+                  </div>
+              </div>
+
+          </div>
+
+
+          <div class="row">
+
+              <div class="row text-center">
+                  <p class="font_white padding_top_17 text_uppercase" style="background-color: black;"><strong> M e n u</strong></p>
+              </div>
+
+              <div class="row text-center">
+
+                  <mat-nav-list>
+                    <a>
+                        <app-menu-list-item class="ripple_for_dark border_btm_for_dark inner_shadow_white" *ngFor="let item of navItems" [item]="item"   target="_blank">                          
+                      </app-menu-list-item>
+                    </a>
+                      
+                  </mat-nav-list> 
+                
+              </div>
+
+          </div>
+          <!-- enable this after routing sorted -->
+
+  </mat-sidenav>
+  <!-- side navigation -->
+
+
+
+
+  <!-- content -->
+  <mat-sidenav-content>
+
+        <!-- header row -->
+        <mat-toolbar class="sticky">
+              <div class="container-fluid">
+                  <div class="row height_65">
+                      <div class="col-4 top_12">
+
+                            <div class="d-flex">
+
+                                <div class="dropdown side-nav">
+                                      <button style="height: 18px;" mat-icon-button color="accent" (click)="sidenav.toggle()" [ngClass]="showToggle">
+                                          <mat-icon>menu</mat-icon>
+                                      </button>
+                                </div>
+
+                                <div class="dropdown logo">
+                                      <img src="/assets/images/mercantile_investments_logo.png" class="at_mobile">
+                                      <img src="/assets/images/mercantile_investments_logo_text.png" class="at_desktop">
+                                </div>
+
+                          </div>
+
+                      </div>
+
+
+                      <div class="col-8 text-end ms-auto">
+                          <div class="d-flex flex-row-reverse height_64 right_17">
+
+                              <div class="dropdown btn_border_left btn_border_right no_search">
+                                  <div class="nav-link height_64">
+                                    <div class="top_src_container">
+                                      <input class="search_top ishfaak_expandright" id="searchright" type="search" name="q" placeholder="Search">
+                                      <label class="button top_search_button" for="searchright" class="fas fa-search font_navy_blue"></label>
+                                    </div>
+
+                                  </div>
+                              </div>
+
+                              <div class="dropdown btn_border_left">
+                                  <div class="nav-link height_64">
+                                        <button class="fas fa-sign-out-alt font_navy_blue"  style="color: #0179f1; font-size: 20px;" (click)="logout()" ></button>
+                                  </div>
+                              </div>
+
+                              <div class="dropdown btn_border_left">
+
+                                  <div class="d-flex flex-row height_64">
+
+                                      <!-- <span class="fas fa-compress font_navy_blue"></span> -->
+                                      <div class="col margin_left_15">
+                                          <div class="text-center position_avatar_small resize_img">
+                                            <img src="/assets/images/mercantile_investments_logo.png" class="avatar_small border-radius_50 small_avatar_force_img_height">
+                                          </div>
+                                      </div>
+
+                                      <div class="col margin_left_15 ishfaak-align-middle avatar_name_text_width">
+                                          <p class="avatar_small_name_text_width ellipsis small_avata_name_position">{{Username}}</p>
+                                      </div>
+
+                                      <div class="col margin_left_15 ishfaak-align-middle margin_right_15">
+                                          <!-- Content for Popover #1 -->
+                                          <div class="hidden d-none" id="a1">
+                                              <div class="popover-heading usr_mi_nav_popover_controll_class">
+                                                  <!-- begin -->
+                                                    <div class="usr_mi_nav_popover_header_wrapper">
+                                                        <div class="col margin_bottom_15" >
+                                                          <span type="button" click="logout()" class="width_100 btn btn-primary d-flex flex-row justify-content-center">
+                                                            <div class="dropdown padding_left_15">
+                                                                Logout
+                                                            </div>
+                                                          </span>
+                                                        </div>
+                                                        <div class="col text_align_left">
+                                                            <p class="font_white">Dear <b>Users Name</b></p>
+                                                            <p class="font_white">You last logged at 24-03-2021 08:25 PM</p>
+                                                        </div>
+                                                    </div>
+                                                  <!-- begin -->
+                                              </div>
+                                              <div class="popover-body padding_10">
+                                                  <div class="d-flex flex-row">
+                                                      <div class="col">
+                                                          <span type="button" (click)="logout1()"  class="btn btn-outline-secondary d-flex justify-content-center btn_outline_padding_7 border_right_none">
+                                                              <p>Change password</p>
+                                                          </span>
+                                                      </div>
+                                                      <div class="col">
+                                                          <span type="button" class="btn btn-outline-secondary d-flex justify-content-center btn_outline_padding_7">
+                                                              <p>Check messages</p>
+                                                          </span>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <!-- Popover #1 -->
+                                      </div>
+
+                                  </div>
+
+                              </div>
+
+                              <div class="dropdown btn_border_left full_screen">
+                                  <div class="nav-link height_64">                                      
+                                      <button class="fas fa-compress font_navy_blue" (click)="openFullscreen()"></button>
+                                  </div>
+                              </div>
+                                <div class="dropdown btn_border_left full_screen">
+                                  <div class="nav-link height_64">                                      
+                                      <button class="fas fa-compress font_navy_blue" (click)="openFullscreen()"></button>
+                                  </div>
+                              </div>
+                          </div>
+
+                      </div>
+
+                  </div>
+
+              </div>
+
+        </mat-toolbar>
+        <!-- header row -->
+
+
+        <!-- Body content -->
+         <router-outlet></router-outlet>
+         
+        <!-- Body content -->
+
+
+
+  </mat-sidenav-content>
+  <!-- content -->
+
+</mat-sidenav-container>

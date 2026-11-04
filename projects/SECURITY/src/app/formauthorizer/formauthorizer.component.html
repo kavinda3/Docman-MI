@@ -1,0 +1,150 @@
+<div class="container-fluid margin_bottom_20">
+
+    <!-- header bread crumbs -->
+    <div class="container-fluid margin_bottom_20">
+        <app-bread-crumbs></app-bread-crumbs>
+    </div>
+    <!-- header bread crumbs --> 
+      
+      <!-- Header title  -->
+      <div class="container-fluid margin_bottom_30">   
+          <div class="container-fluid fluid-bg-1 ishfaak-align-middle ">   
+              <div class="container">  
+                  <div class="row container_at_1665">
+                      <div class="d-flex flex-row">
+                          <div class="d-inline-block">
+                              <div class="d-inline-block padding_right_30">
+                                  <img src="/assets/images/admin.svg" class="side_nav_icon_extra_big fill_svg_white">
+                              </div>
+                          </div>
+                          <div class="d-inline-block ">
+                              <h1 class="font_white">Form Authorizer</h1>
+                              <p class="font_white">{{today | date: 'dd MMMM yyyy, hh:mm:ss a'}}</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!-- Header title  -->
+    
+      <!-- body graph -->
+    <div class="container-fluid i margin_bottom_53">
+
+    <div class="container">
+      <div class="row container_at_1665">
+        <div class="container">
+        <!-- set -->          
+        <div class="d-flex justify-content-between flex-wrap">
+          <div class="col-xl-3 col-lg-3 col-md-12 margin_bottom_30 padding_right_12">
+            <div class="width_50_two_columns">
+              <div class="form-group padding_zero_6">
+                <label  class="col-form-label ellipsis form_label_text_width">Authorize Option</label>
+                <select class="form-select form-control-plaintext  bg-light border rounded px-2 py-1" [(ngModel)]="stroption" (change)="onLoadTable()"> 
+                    <option >File Request Authorization</option>
+                    <option >File Approval</option>
+                  </select>
+              </div>
+              <div class="form-group padding_zero_6">
+                <label  class="col-form-label ellipsis form_label_text_width">Location</label>
+                <select class="form-select form-control-plaintext  bg-light border rounded px-2 py-1" [(ngModel)]="fromLocation" style="font-size: 13px"  > 
+                    <option  selected="selected"></option>
+                    <option *ngFor="let option of Location"  value="{{option.strLocCode}}" >{{option.strLocName}}</option>
+                  </select>
+              </div>  
+            </div>
+          </div>
+           
+          <div class="col-xl-3 col-lg-3 col-md-12 margin_bottom_30 padding_right_12"></div>
+                  
+        </div>
+       
+
+        <div class="col-xl-6 col-lg-6 col-md-12 margin_bottom_30 padding_right_12">
+            <button mat-raised-button color="accent" *ngIf="isVisibleShow" (click)="Show()">Show Location Authorizer</button>
+            <button mat-raised-button color="accent" *ngIf="isVisibleReset" (click)="Reset()">Reset Location Authorizer</button>
+          </div>
+      </div>
+      <div class="row margin_bottom_15">
+        <div class="card shadow-sm border-0 rounded" *ngIf="isCardVisible">
+            <div class="card-body">
+              <div class="row mb-3 align-items-center">
+                <div class="col-md-12">
+                  <h5 class="card-title text-primary mb-0" style="font-size: 14px;">🔐 Authorize User</h5>
+                  <hr />
+                </div>
+              </div>
+          
+              <div class="row mb-3 align-items-center">
+                <div class="col-md-1">
+                  <label class="form-label mb-0">User:</label>
+                </div>
+                <div class="col-md-3">
+                   <select class="form-select form-control-plaintext  bg-light border rounded px-2 py-1" style="font-size: 13px" [(ngModel)]="authUser" (change)="onGetUserEmail()" >                     
+                    <option *ngFor="let option of AuthUser"  value="{{option.strLoginName}}" >{{option.strUserName}}</option>
+                  </select>
+                </div>
+                 <div class="col-md-1" >
+                </div>
+                <div class="col-md-1 padding_right_12" >
+                  <label class="form-label mb-0" >Email:</label>
+                </div>
+                <div class="col-md-3">
+                  <input type="email" [(ngModel)]="userEmail" class="form-control-plaintext  bg-light border rounded px-2 py-1"  readonly/>
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-2">
+                   <button mat-raised-button color="accent" (click)="AddAuthUser()">Add Auth User</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+</div>
+    <div class="row margin_bottom_15" *ngIf="isVisibleTable">
+        <div class="example-container mat-elevation-z8">
+          <mat-table #table [dataSource]="AuthList" multiTemplateDataRows matSort #sort="matSort">
+            <ng-container matColumnDef="LoginName">
+              <mat-header-cell *matHeaderCellDef mat-sort-header class="width_118 no_header_flx"> Login Name </mat-header-cell>
+              <mat-cell *matCellDef="let element" class="width_118 no_header_flx">
+                <button *ngIf="expandedElement != element">{{element.LoginName}}</button>
+              </mat-cell>
+            </ng-container> 
+
+            <ng-container matColumnDef="AuthName">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Auth Name </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.UserName}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="Email">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+              <mat-cell *matCellDef="let element">{{element.Email}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="expandedDetail">
+              <mat-cell *matCellDef="let detail"></mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;" matRipple class="element-row"></mat-row>
+
+          </mat-table>
+          <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+        </div>
+      
+      </div>
+    </div>
+    
+  </div>
+
+      <!-- body graph -->     
+</div>
+    
+    <!-- footer graph -->
+    <app-footer class="footer_position"></app-footer>
+    <!-- footer graph -->
+    
+    
+    <app-right-menu></app-right-menu>
+    

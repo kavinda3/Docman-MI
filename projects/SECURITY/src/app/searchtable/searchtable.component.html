@@ -1,0 +1,45 @@
+<div>
+    <input [(ngModel)]="searchQuery" (input)="onSearch()" placeholder="Search..." />
+  </div>
+  
+  <mat-table #table [dataSource]="dataSource" multiTemplateDataRows matSort #sort="matSort">
+
+    <ng-container matColumnDef="Contract_No">
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="width_118 no_header_flx">Contract No </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="width_118 no_header_flx">
+        <button *ngIf="expandedElement != element">{{element.ContractNo}}</button>
+      </mat-cell>
+    </ng-container> 
+
+    <ng-container matColumnDef="Hirer">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Hirer </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.Hirer}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Vehicle_No">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Vehicle No </mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.VehicleNo}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Rack_No">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Rack No</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.RackNo}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="edit">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Edit </mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.RackNo}}</mat-cell>
+      <!-- <mat-cell *matCellDef="let element"><button mat-raised-button color="accent" (click)="EditProduct(element.contract_no)"><span class="material-icons">create</span> </button></mat-cell> -->
+    </ng-container>
+
+    <ng-container matColumnDef="expandedDetail">
+      <mat-cell *matCellDef="let detail"></mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" matRipple class="element-row"></mat-row>
+
+  </mat-table>
+  
+  <mat-paginator [length]="dataSource.data.length" [pageSize]="pageSize" (page)="onPageChange($event)">
+  </mat-paginator>
+  

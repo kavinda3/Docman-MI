@@ -1,0 +1,53 @@
+<div class="row margin_bottom_15">
+  <div class="example-container mat-elevation-z8">
+    
+    <mat-table #table [dataSource]="dataSourceTRNNo" multiTemplateDataRows matSort #sort="matSort">
+
+      <ng-container matColumnDef="TRN_No">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="width_118 no_header_flx"> TRN No </mat-header-cell>
+        <mat-cell *matCellDef="let element" class="width_118 no_header_flx">
+          <button *ngIf="expandedElement != element">{{element.TrnNo}}</button>
+        </mat-cell>
+      </ng-container> 
+
+      <ng-container matColumnDef="Date">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.Date}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Enter_User">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>EnterUser </mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.EnterUser}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Confirmed">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Confirm </mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.Confirm}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Acknowledged">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Acknowledged </mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.Acknowleded}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="expandedDetail">
+        <mat-cell *matCellDef="let detail"></mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumnsnew"></mat-header-row>
+      <mat-row 
+        *matRowDef="let row; columns: displayedColumnsnew;" 
+        matRipple 
+        class="element-row"
+        [class.selected-row]="row.TrnNo === selectedTrnNo"
+        (click)="onRowClicked(row)">
+      </mat-row>
+    </mat-table>
+
+    <mat-paginator #paginator1 [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
+
+    <br>
+    <button mat-raised-button (click)="submitPrompt()">Submit</button>
+    <button mat-raised-button class="ml-2" (click)="closePrompt()">Cancel</button>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+/* In your dropdown.component.scss */
+
+/* Apply custom styles only to mat-select on this page */
+::ng-deep .mat-select-panel {
+  background-color: #f5f5f5; /* Light background for the dropdown */
+  color: #333;  /* Text color */
+}
+
+::ng-deep .mat-option {
+  color: #333;  /* Text color for options */
+}
+
+::ng-deep .mat-option:hover {
+  background-color: #e0e0e0;  /* Hover effect */
+}
+
+::ng-deep .mat-select-trigger {
+  color: #333;  /* Text color for the selected item */
+}
+
+/* Optional: Customizing the virtual scroll viewport */
+::ng-deep .cdk-virtual-scroll-viewport {
+  background-color: #fafafa; /* Light background for the viewport */
+}
+
+/* Optional: Styling for the input field above the dropdown */
+::ng-deep .form-control {
+  border-radius: 5px;
+  padding: 8px;
+  border-color: #ddd; /* Light border */
+}

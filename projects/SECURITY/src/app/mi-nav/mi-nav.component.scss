@@ -1,0 +1,177 @@
+$white: #fff;
+
+.example-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.example-events {
+  width: 255px;
+  overflow: auto;
+}
+
+.avatar_bg {
+  background: url(../../assets/images/avatar_bg.jpg);
+  background-size: 100% 100%;
+}
+
+.position_avatar {
+  padding-top: 30px;
+  padding-bottom: 18px;
+}
+
+.border_avatar {
+  border: 8px solid $white;
+}
+
+.padding_bottom_23 {
+  padding-bottom: 23px;
+}
+
+.padding_top_17 {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.padding_top_13 {
+  padding-top: 13px;
+}
+
+.width_79 {
+  margin: 0 auto !important;
+  width: 79% !important;
+  position: relative !important;
+}
+
+.avatar_force_img_height {
+  height: 96px !important;
+}
+
+.small_avatar_force_img_height {
+  height: 48px !important;
+}
+
+.logo .at_mobile {
+  display: none;
+}
+
+.logo .at_desktop {
+  width: 213px;
+  height: 36px;
+  // max-width: 73%;
+  margin-left: 5px;
+  padding-top: 4px;
+}
+
+@media screen and (max-width: 710px) {
+
+  .logo .at_mobile {
+    display: block !important;
+    display: block !important;
+    margin-left: 5px;
+    width: 41px;
+    height: 41px;
+  }
+
+  .logo .at_desktop {
+    display: none;
+  }
+
+}
+
+.btn_border_left {
+  border-left: 1px solid #d7d7d7;
+}
+
+.btn_border_right {
+  border-right: 1px solid #d7d7d7;
+}
+
+.height_65 {
+  top: 0px;
+  height: 65px;
+  position: relative;
+}
+
+.top_12 {
+  top: 12px;
+  position: relative;
+}
+
+.height_64 {
+    height: 64px;
+}
+
+.nav-link {
+  padding:16px 20px !important;
+}
+
+.position_avatar_small {
+  top: 7px;
+  position: relative;
+}
+
+.small_avata_name_position {
+  margin-top: 8px;
+}
+
+.avatar_big_name_text_width {
+  width: 234px !important;
+  min-width: 234px !important;
+}
+
+.avatar_small_name_text_width {
+  width: 74px !important;
+  min-width: 74px !important;
+}
+
+.margin_left_15 {
+  margin-left: 15px;
+}
+
+.padding_left_15 {
+  padding-left: 15px;
+}
+
+.margin_right_15 {
+  margin-right: 15px;
+}
+
+.right_17 {
+  right: -17px;
+  position: relative;
+}
+
+@media screen and (max-width: 711px) {
+
+  .full_screen {
+    display: none;
+  }
+
+}
+
+@media screen and (max-width: 471px) {
+
+  .no_search {
+    display: none;
+  }
+
+}
+
+@media screen and (max-width: 399px) {
+
+  .avatar_name_text_width {
+    display: none;
+  }
+
+}
+
+.margin_bottom_15 {
+  margin-bottom: 15px;
+}
+
+// .hide{display:none;}
+

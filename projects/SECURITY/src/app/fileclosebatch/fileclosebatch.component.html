@@ -1,0 +1,301 @@
+<!-- header bread crumbs -->
+<div class="container-fluid margin_bottom_20">
+
+  <app-bread-crumbs></app-bread-crumbs>
+
+</div>
+<!-- header bread crumbs -->
+
+<!-- Header title  -->
+<div class="container-fluid margin_bottom_30">
+
+  <div class="container-fluid fluid-bg-1 ishfaak-align-middle ">
+
+    <div class="container">
+
+      <div class="row container_at_1665">
+
+        <div class="d-flex flex-row">
+          <div class="d-inline-block">
+            <div class="d-inline-block padding_right_30">
+              <img src="/assets/images/admin.svg" class="side_nav_icon_extra_big fill_svg_white">
+            </div>
+          </div>
+          <div class="d-inline-block ">
+            <h1 class="font_white">{{lblMode}}</h1>
+            <p class="font_white">{{today | date: 'dd MMMM yyyy, hh:mm:ss a'}}</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+<!-- Header title  -->
+
+<!-- body graph -->
+<!-- body content -->
+<div class="container-fluid i margin_bottom_53">
+
+  <div class="container">
+    <div class="row container_at_1665">
+      <div class="container">
+        <!-- set -->
+        <div class="d-flex flex-wrap">
+          <div class="col-xl-4 col-lg-4 col-md-12 padding_right_12">
+            <div class="width_50_two_columns">
+              <div class="form-group padding_zero_6">
+                <label class="col-form-label ellipsis form_label_text_width">Batch No</label>
+                <input type="text" class="form-control-plaintext  bg-light border rounded px-2 py-1"
+                  (dblclick)="onDoubleClick()" [(ngModel)]="batchNo"  (keydown.enter)="onSearch()"  [disabled]="isDasabled_BatchNo" min="1">
+              </div>
+              <div class="form-group padding_zero_6"  >
+                <label class="col-form-label ellipsis form_label_text_width">Date</label>
+                <input  type="date" [disabled]="dtpBatchDate" [(ngModel)]="closedate"  class="form-control-plaintext  bg-light border rounded px-2 py-1">
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-2 col-lg-2 col-md-12 padding_right_12">
+
+          </div>
+          <div class="col-xl-4 col-lg-4 col-md-12 padding_right_12">
+            <div class="width_50_two_columns">
+              <div class="form-group padding_zero_6">
+                <label class="col-form-label ellipsis form_label_text_width">Remark</label>
+                <input type="text" [disabled]="isDasabled_Remarks" [(ngModel)]="remark" class="form-control-plaintext  bg-light border rounded px-2 py-1" min="1">
+              </div>
+              <div class="form-group padding_zero_6" *ngIf="isVisiblepnlSearch">
+                <label class="col-form-label ellipsis form_label_text_width">Search</label>
+                <input type="text" class="form-control-plaintext  bg-light border rounded px-2 py-1" [(ngModel)]="contractNo" (keydown.enter)="onSearchfunction()" min="1">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <br>
+        <div class="card" *ngIf="pnlContractDetail">
+          <br>
+          <div class="card-content">
+            <div class="row" >
+              <div class="col-md-1">
+                <b style="font-size: 13px;padding-left: 5px;" class="card-title">Bundle No</b>
+              </div>
+              <div class="col-md-3">
+                <select class="form-select bg-light border rounded px-2 py-1" *ngIf="cboBundleNo" (change)="onLoadTable()"  style="font-size: 13px;"
+                  [(ngModel)]="bundleNo">
+                  <option value="">-- Show All --</option>
+                  <option *ngFor="let bundle of Bundle"   [value]="bundle">
+                    {{ bundle }}
+                  </option>
+                </select>
+              </div>
+              <div class="col-md-1">
+              </div>
+              <div class="col-md-1">
+                <label><b>Status</b></label>
+              </div>
+              <div class="col-md-4">
+                <label>{{lblBundleInfo}}</label>
+              </div>
+              <div class="col-md-2">
+                <button *ngIf="btnApproveReopen" mat-raised-button color="accent" (click)="clickbtnApproveReopen()">{{lblbtnApproveReopen}}</button>
+              </div>
+            </div>
+
+          </div>
+          <br>
+        </div>
+        <br>
+         <pre class="col-form-label form_label_text_width">{{lblFileStatus}}</pre>
+        <br>
+        <div class="row margin_bottom_15">
+          <div class="example-container mat-elevation-z8">
+           <mat-table #table [dataSource]="dataSource" multiTemplateDataRows matSort #sort="matSort">
+              <!-- Bundle No -->
+              <ng-container matColumnDef="BundleNo">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="col-narrow">Bundle No</mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                  <button *ngIf="expandedElement != element">{{element.IBUNDLE_NO}}</button>
+                </mat-cell>
+              </ng-container>
+
+              <!-- Seq No -->
+              <ng-container matColumnDef="SeqNo">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Seq No </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.ISEQ}} </mat-cell>
+              </ng-container>
+
+              <!-- Contract No -->
+              <ng-container matColumnDef="ContractNo">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Contract No </mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.SZCONTRACTNO}}</mat-cell>
+              </ng-container>
+
+              <!-- Hirer Name -->
+              <ng-container matColumnDef="HirerName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Hirer Name </mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.SZHIRER}}</mat-cell>
+              </ng-container>
+
+              <!-- Vehicle No -->
+              <ng-container matColumnDef="VehicleNo">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Vehicle No/s </mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.SZVEHICLENO}}</mat-cell>
+              </ng-container>
+
+              <!-- Change Status -->
+              <ng-container matColumnDef="ChangeStatus">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Change Status </mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.SZ_CHANGE_STATUS}}</mat-cell>
+              </ng-container>
+
+              <!-- Removed After TRN -->
+              <ng-container matColumnDef="RemovedafterTRN">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Removed After TRN </mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.BOOL_REMOVED}}</mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="expandedDetail">
+                <mat-cell *matCellDef="let detail"></mat-cell>
+              </ng-container>
+              
+              <mat-header-row *matHeaderRowDef="displayedColumns" ></mat-header-row>
+              <!-- <mat-row *matRowDef="let row; columns: displayedColumns;" matRipple class="element-row" matRipple  [ngClass]="{'highlight-row': row.IBUNDLE_NO.toString() === bundleNo}"></mat-row> -->
+              <!-- <mat-row *matRowDef="let row; columns: displayedColumns;" matRipple class="element-row" matRipple  ></mat-row> -->
+              <mat-row
+                *matRowDef="let row; columns: displayedColumns;"
+                matRipple
+                class="element-row"
+                [ngClass]="{
+                  'status-added': row.SZ_CHANGE_STATUS === 'ADD',
+                  'status-removed': row.SZ_CHANGE_STATUS === 'REM'
+                }"
+              ></mat-row>
+
+            </mat-table>
+
+            <mat-paginator [length]="totalRecords" [pageSize]="10" [pageSizeOptions]="[5, 10, 20]">
+            </mat-paginator>
+            <br>
+            <div class="row">
+              <div class="col-xl-3 col-lg-3 col-md-12 padding_right_12">
+                <div class="width_50_two_columns">
+                  <div class="form-group padding_zero_6">
+                    <label class="col-form-label ellipsis form_label_text_width">Complete Batch</label>
+                    <input class="form-check-input" (change)="onCheckboxChange($event)" type="checkbox"
+                      id="CompleteBatch" [disabled]="isDisableCompleteBatch" [(ngModel)]="chkComplete"
+                      name="CompleteBatch">
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-4 col-lg-4 col-md-12 padding_right_12">
+                <div class="width_50_two_columns">
+                  <div class="form-group padding_zero_6">
+                    <pre class="col-form-label form_label_text_width">{{ lblStatus }}</pre>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-3 col-md-12 padding_right_12">
+                <div class="width_50_two_columns">
+                  <div class="form-group padding_zero_6">
+                    <button flex="33" mat-raised-button color="accent" *ngIf="isDasabled_btnTransfer" (click)="TransfercloseFile()">Transfer to Close File
+                      Location</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="col-xl-3 col-lg-3 col-md-6 margin_bottom_30 button-container">
+              <button mat-raised-button color="accent" (click)="NewClick()" *ngIf="isDasabled_btnNew">New</button>
+              <button style="padding-left: 10px;" mat-raised-button color="accent" *ngIf="isDasabled_btnEdit"
+                (click)="EditClick()">Edit</button>
+              <button mat-raised-button *ngIf="isDasabled_btnPrint" color="accent">Print</button>
+              <button style="padding-left: 10px;" mat-raised-button *ngIf="isDasabled_btnClear" color="accent"
+                (click)="ClearClick()">Clear</button>
+              <button style="padding-left: 10px;" mat-raised-button color="accent" (click)="SaveDocDetails()"
+                *ngIf="isDasabled_btnSave">Save</button>
+            </div>
+          </div>
+          <div *ngIf="isPromptVisible" class="prompt-card">
+            <div class="card" id="promptCard">
+              <button type="button" class="btn-close position-absolute top-0 end-0 m-2" aria-label="Close"
+                (click)="closePrompt()"></button>
+              <br>
+              <div class="row common_border box_shadow padding_15 margin_bottom_10">
+                <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+                  <label class="col-form-label"><b>Filter Batch No</b></label>
+                </div>
+
+                <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
+                  <input type="email" class="form-control-plaintext  bg-light border rounded px-2 py-1"
+                    (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+                </div>
+              </div>
+              <div class="row margin_bottom_15">
+                <div class="example-container mat-elevation-z8">
+                  <mat-table #table [dataSource]="dataSourceBatchNo" multiTemplateDataRows matSort #sort="matSort">
+
+                    <ng-container matColumnDef="Batch_No">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header class="width_118 no_header_flx"> Batch No
+                      </mat-header-cell>
+                      <mat-cell *matCellDef="let element" class="width_118 no_header_flx">
+                        <button *ngIf="expandedElement != element">{{element.SZ_BATCH_NO}}</button>
+                      </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Date">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
+                      <mat-cell *matCellDef="let element"> {{element.SZ_ENTER_DATE}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="EnterUser">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header> Enter User </mat-header-cell>
+                      <mat-cell *matCellDef="let element">{{element.SZ_ENTER_USER}}</mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="Complete">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header> Complete </mat-header-cell>
+                      <mat-cell *matCellDef="let element">{{element.iCOMPLETE}}</mat-cell>
+                    </ng-container>
+                   
+                    <ng-container matColumnDef="expandedDetail">
+                      <mat-cell *matCellDef="let detail"></mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumnsnew"></mat-header-row>
+                    <!-- <mat-row *matRowDef="let row; columns: displayedColumnsnew;" matRipple class="element-row"></mat-row> -->
+                    <mat-row *matRowDef="let row; columns: displayedColumnsnew;" matRipple class="element-row"
+                      [class.selected-row]="row.SZ_BATCH_NO === selectedBatchNo" (click)="onRowClicked(row)">
+                    </mat-row>
+                  </mat-table>
+                  <mat-paginator #paginator1 [pageSizeOptions]="[5, 10]" showFirstLastButtons></mat-paginator>
+                  <br>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
+  </div>
+</div>
+<div *ngIf="isLoading" class="loading-overlay">
+  <mat-progress-bar mode="indeterminate" color="primary"></mat-progress-bar>
+  <p>Processing, please wait...</p>
+</div>
+
+<!-- body graph -->
+
+<!-- footer graph -->
+<app-footer class="footer_position"></app-footer>
+<!-- footer graph -->
+
+
+<app-right-menu></app-right-menu>

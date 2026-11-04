@@ -1,0 +1,274 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "02c72fcc-253e-40de-b131-a25fda03572f"
+  },
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "mi-home": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/mi-home",
+      "sourceRoot": "projects/mi-home/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/mi-home",
+            "index": "projects/mi-home/src/index.html",
+            "main": "projects/mi-home/src/main.ts",
+            "polyfills": "projects/mi-home/src/polyfills.ts",
+            "tsConfig": "projects/mi-home/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/mi-home/src/favicon.ico",
+              "projects/mi-home/src/assets"
+            ],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
+              "projects/mi-home/src/styles.scss",
+			  "projects/mi-home/src/overwrite.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css"
+            ],
+            "scripts": [
+			  "./node_modules/chart.js/dist/Chart.min.js",
+              "./node_modules/jquery/dist/jquery.min.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "./node_modules/popper.js/dist/umd/popper.min.js",
+			],
+			"allowedCommonJsDependencies": ["chart.js"]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/mi-home/src/environments/environment.ts",
+                  "with": "projects/mi-home/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "mi-home:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "mi-home:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "mi-home:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/mi-home/src/test.ts",
+            "polyfills": "projects/mi-home/src/polyfills.ts",
+            "tsConfig": "projects/mi-home/tsconfig.spec.json",
+            "karmaConfig": "projects/mi-home/karma.conf.js",
+            "assets": [
+              "projects/mi-home/src/favicon.ico",
+              "projects/mi-home/src/assets"
+            ],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
+              "projects/mi-home/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/mi-home/tsconfig.app.json",
+              "projects/mi-home/tsconfig.spec.json",
+              "projects/mi-home/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/mi-home/e2e/protractor.conf.js",
+            "devServerTarget": "mi-home:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "mi-home:serve:production"
+            }
+          }
+        }
+      }
+    },
+    
+	
+	
+	
+	"fdi": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/fdi",
+      "sourceRoot": "projects/fdi/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/fdi",
+            "index": "projects/fdi/src/index.html",
+            "main": "projects/fdi/src/main.ts",
+            "polyfills": "projects/fdi/src/polyfills.ts",
+            "tsConfig": "projects/fdi/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/fdi/src/favicon.ico",
+              "projects/fdi/src/assets"
+            ],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
+              "projects/mi-home/src/styles.scss",
+			  "projects/mi-home/src/overwrite.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css"
+            ],
+            "scripts": [
+			  "./node_modules/chart.js/dist/Chart.min.js",
+              "./node_modules/jquery/dist/jquery.min.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "./node_modules/popper.js/dist/umd/popper.min.js",
+			],			
+			"allowedCommonJsDependencies": ["chart.js"]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/fdi/src/environments/environment.ts",
+                  "with": "projects/fdi/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "fdi:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "fdi:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "fdi:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/fdi/src/test.ts",
+            "polyfills": "projects/fdi/src/polyfills.ts",
+            "tsConfig": "projects/fdi/tsconfig.spec.json",
+            "karmaConfig": "projects/fdi/karma.conf.js",
+            "assets": [
+              "projects/fdi/src/favicon.ico",
+              "projects/fdi/src/assets"
+            ],
+            "styles": [
+              "projects/fdi/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/fdi/tsconfig.app.json",
+              "projects/fdi/tsconfig.spec.json",
+              "projects/fdi/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/fdi/e2e/protractor.conf.js",
+            "devServerTarget": "fdi:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "fdi:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "mi-home"
+}

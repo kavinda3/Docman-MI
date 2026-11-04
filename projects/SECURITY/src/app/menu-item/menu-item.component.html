@@ -1,0 +1,223 @@
+<div class="container-fluid margin_bottom_20">
+
+    <!-- header bread crumbs -->
+    <div class="container-fluid margin_bottom_20">
+        <app-bread-crumbs></app-bread-crumbs>
+    </div>
+    <!-- header bread crumbs --> 
+      
+      <!-- Header title  -->
+      <div class="container-fluid margin_bottom_30">   
+          <div class="container-fluid fluid-bg-1 ishfaak-align-middle ">   
+              <div class="container">  
+                  <div class="row container_at_1665">
+                      <div class="d-flex flex-row">
+                          <div class="d-inline-block">
+                              <div class="d-inline-block padding_right_30">
+                                  <img src="/assets/images/admin.svg" class="side_nav_icon_extra_big fill_svg_white">
+                              </div>
+                          </div>
+                          <div class="d-inline-block ">
+                              <h1 class="font_white">Menu Item Details</h1>
+                              <p class="font_white">{{today | date: 'dd MMMM yyyy, hh:mm:ss a'}}</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!-- Header title  -->
+    
+      <!-- body graph -->
+  <div class="container-fluid i margin_bottom_53">
+
+    <div class="container">
+      <div class="row container_at_1665">
+        <div class="container">
+        <!-- set -->          
+        <div class="d-flex justify-content-between flex-wrap">
+          <div class="col-xl-4 col-lg-4 col-md-12 margin_bottom_30 padding_right_12"> 
+            <label class="col-form-label ellipsis form_label_text_width">Menu Name</label>
+            <input type="text" class="form-control" [(ngModel)]="menuItem_name">
+          </div>
+
+          <div class="col-xl-4 col-lg-4 col-md-12 margin_bottom_30 padding_right_12"> 
+            <label class="col-form-label ellipsis form_label_text_width">Alias Menu Name</label>
+            <input type="text" class="form-control" [(ngModel)]="menuItem_alias">
+          </div>
+
+          <div class="col-xl-4 col-lg-4 col-md-12 margin_bottom_30 padding_right_12"> 
+            <label class="col-form-label ellipsis form_label_text_width">URL</label>
+            <input type="text" class="form-control" [(ngModel)]="url">
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-between flex-wrap">
+          <div class="col-xl-4 col-lg-4 col-md-12 margin_bottom_30 padding_right_12">
+            <div class="width_50_two_columns">
+              <div class="form-group padding_zero_6">
+                <label  class="col-form-label ellipsis form_label_text_width">Product Name</label>
+                <select class="form-select form-control" [(ngModel)]="product_id">
+                  <option selected="selected">--select product--</option>
+                  <option *ngFor="let option of ProductList" value="{{option.ProductID}}">{{option.ProductName}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-4 col-md-12 margin_bottom_30 padding_right_12">
+            <div class="width_50_two_columns">
+              <div class="form-group padding_zero_6">
+                <label  class="col-form-label ellipsis form_label_text_width">Menu Group Name</label>
+                <select class="form-select form-control" [(ngModel)]="menugroup_id">
+                  <option selected="selected">--select menu group--</option>
+                  <option *ngFor="let option of MenuGroupList" value="{{option.MenuGroupID}}">{{option.MenuGroupName}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-4 col-md-12 margin_bottom_30 padding_right_12">
+            <div class="width_50_two_columns">
+              <div class="form-group padding_zero_6">
+                <label  class="col-form-label ellipsis form_label_text_width">Parent Menu Name</label>
+                <select class="form-select form-control" [(ngModel)]="parentmenu_id">
+                  <option selected="selected">--select parent menu--</option>
+                  <option *ngFor="let option of ParentMenuList" value="{{option.ParentMenuID}}">{{option.ParentMenuName}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-between flex-wrap">
+          <div class="col-xl-4 col-lg-4 col-md-12 margin_bottom_30 padding_right_12">
+            <label class="col-form-label ellipsis form_label_text_width">Is End Point</label>
+            <input type="radio" [checked]="is_end_point==true" [(ngModel)]="is_end_point" name="end_point" [value]=true>Yes
+            <input type="radio" [checked]="is_end_point==false" [(ngModel)]="is_end_point" name="end_point" [value]=false>No
+          </div>
+
+          <div class="col-xl-4 col-lg-4 col-md-12 margin_bottom_30 padding_right_12">
+            <label class="col-form-label ellipsis form_label_text_width">Is Visible</label>
+            <input type="radio" [checked]="is_visible==true" [(ngModel)]="is_visible" name="visible" [value]=true>Yes
+            <input type="radio" [checked]="is_visible==false" [(ngModel)]="is_visible" name="visible" [value]=false>No
+          </div>
+
+          <div class="col-xl-4 col-lg-4 col-md-12 margin_bottom_30 padding_right_12">
+            <label class="col-form-label ellipsis form_label_text_width">Is Disable</label>
+            <input type="radio" [checked]="is_disable==true" [(ngModel)]="is_disable" name="disable" [value]=true>Yes
+            <input type="radio" [checked]="is_disable==false" [(ngModel)]="is_disable" name="disable" [value]=false>No
+          </div>                                   
+        </div>
+
+        <div class="d-flex justify-content-between flex-wrap">
+          <div class="col-xl-4 col-lg-4 col-md-12 margin_bottom_30 padding_right_12">
+            <label class="col-form-label ellipsis form_label_text_width">Menu Order Number</label>
+            <input type="text" class="form-control" [(ngModel)]="menuItem_order">
+          </div>
+          <div class="col-xl-4 col-lg-4 col-md-12 margin_bottom_30 padding_right_12"></div>
+          <div class="col-xl-4 col-lg-4 col-md-12 margin_bottom_30 padding_right_12"></div>                                  
+        </div>
+
+        <div class="col-xl-6 col-lg-6 col-md-12 margin_bottom_30 padding_right_12">
+          <button flex="33" mat-raised-button color="accent" (click)="SaveMenuItem()">{{btnName}}</button>
+          <button mat-raised-button color="accent" (click)="Clear()">Clear</button> 
+        </div>
+        <br>
+
+        <div class="row common_border box_shadow padding_15 margin_bottom_10">
+          <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+            <label class="col-form-label"><b>Filter your menu</b></label>
+          </div>
+
+          <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
+            <input type="email" class="form-control" (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+          </div>
+        </div>
+
+        <div class="row margin_bottom_15">
+          <div class="example-container mat-elevation-z8">
+            <mat-table #table [dataSource]="dataSource" multiTemplateDataRows matSort #sort="matSort">
+
+              <ng-container matColumnDef="action">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="width_118 no_header_flx"> No </mat-header-cell>
+                <mat-cell *matCellDef="let element" class="width_118 no_header_flx">
+                  <button *ngIf="expandedElement != element">{{element.MenuItemID}}</button>
+                </mat-cell>
+              </ng-container> 
+
+              <ng-container matColumnDef="menuItemName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Menu Item Name </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.MenuItemName}} </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="menuAlias">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Menu Alias </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.MenuAlias}} </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="url">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Url </mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.Url}}</mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="product">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Product </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.ProductName}} </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="menugroup">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Menu Group </mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.MenuGroupName}}</mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="menuparent">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Menu Parent </mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.MenuParentName}}</mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="endpoint">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> End Point </mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.Endpoint}}</mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="visible">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Visibility </mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.Visible}}</mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="menuOrder">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Menu Order </mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.MenuOrder}}</mat-cell>
+              </ng-container>  
+              
+              <ng-container matColumnDef="edit">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Edit </mat-header-cell>
+                <mat-cell *matCellDef="let element"><button mat-raised-button color="accent" (click)="EditMenuItem(element.MenuItemID)"><span class="material-icons">create</span> </button></mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="expandedDetail">
+                <mat-cell *matCellDef="let detail"></mat-cell>
+              </ng-container>
+
+              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns;" matRipple class="element-row"></mat-row>
+
+            </mat-table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+      <!-- body graph -->     
+    </div>
+    
+    <!-- footer graph -->
+    <app-footer class="footer_position"></app-footer>
+    <!-- footer graph -->
+    
+    
+    <app-right-menu></app-right-menu>
+    

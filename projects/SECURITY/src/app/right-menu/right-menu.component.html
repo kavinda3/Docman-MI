@@ -1,0 +1,112 @@
+<nav role='navigation_right'>
+
+  <div id="menuToggle_right">
+
+    <input type="checkbox" />
+
+    <span>
+        <div class="position_fa_spin fas fa-cog fa-spin"></div>
+    </span>
+
+    <!-- <div class="fas fa-sync-alt fa-spin"></div> -->
+
+    <div id="menu_right_wrapper">
+
+        <div class="row header_padding bg_light_blue">
+
+            <p class="font_white text_uppercase text_bold">Settings</p>
+
+        </div>
+
+        <div class="row list_padding">
+
+            <ul class="list-group list-group-flush">
+
+              <li class="list_with_arrow list-group-item margin_bottom_15">
+                  <div class="d-flex">
+                      <div class="dropdown">
+                        <p>Hi, <b class="font_light_blue">{{this.Username}}</b></p>
+                        <p class="font_13 padding_bottom_15">You Last logged at <b>24-03-2021 08:25 PM</b></p>
+                      </div>
+                  </div>
+              </li>
+
+              <li class="list_with_arrow list-group-item">
+                  <div class="d-flex">
+                      <div class="dropdown">
+                        <h1>11:45 AM</h1>
+                        <p class="font_13 padding_bottom_15">May 06, 7:33 PM</p>
+                      </div>
+                  </div>
+              </li>
+
+              <li class="list_with_arrow list-group-item">
+                  <div class="d-flex">
+                      <div class="dropdown">
+                        <img src="/assets/images/secure.svg" class="side_nav_icon_size">
+                      </div>
+                      <div class="dropdown padding_left_15">
+                          <p>Change password</p>
+                      </div>
+                  </div>
+              </li>
+
+              <li class="list_with_arrow list-group-item margin_bottom_15">
+                <div class="d-flex">
+                    <div class="dropdown">
+                      <img src="/assets/images/dashboard.svg" class="side_nav_icon_size">
+                    </div>
+                    <div class="dropdown padding_left_15">
+                        <p>save work path</p>
+                    </div>
+                </div>
+              </li>
+
+              <li class="list_with_arrow list-group-item">
+                <div class="d-flex">
+                    <div class="dropdown">
+                      <img src="/assets/images/send.svg" class="side_nav_icon_size_big ">
+                    </div>
+                    <div class="dropdown padding_left_15 ishfaak-align-middle">
+                        <p class="top_2">Send email</p>
+                    </div>
+                </div>
+              </li>
+
+            </ul>
+
+        </div>
+
+        <div class="row list_padding">
+
+            <form>
+
+                <div class="row margin_bottom_15">
+                    <p class="form_space_txt_to_input">Your name</p>
+                    <input class="form_right_input form_right_input_height" type="text" name="from" placeholder="Your name" required>
+
+                </div>
+
+                <div class="row margin_bottom_15 ">
+                    <p class="form_space_txt_to_input">Receivers name</p>
+                    <input class="form_right_input form_right_input_height" type="text" name="to" placeholder="Senders name" required>
+                </div>
+
+                <div class="row margin_bottom_20 ">
+                  <p class="form_space_txt_to_input">Message</p>
+                  <textarea name="Your message" class="form_right_txtarea form_right_textarea_height" maxlength="513" required></textarea>
+                </div>
+
+                <div class="row margin_bottom_15">
+                    <button type="button" class="btn btn-primary">Send Message</button>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+  </div>
+
+</nav>

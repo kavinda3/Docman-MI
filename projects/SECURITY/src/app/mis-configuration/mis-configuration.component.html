@@ -1,0 +1,383 @@
+<!-- header bread crumbs -->
+<div class="container-fluid margin_bottom_20">
+
+    <app-bread-crumbs></app-bread-crumbs>
+
+</div>
+<!-- header bread crumbs -->
+
+<!-- Header title  -->
+<div class="container-fluid margin_bottom_30">
+
+      <div class="container-fluid fluid-bg-1 ishfaak-align-middle ">
+
+          <div class="container">
+
+              <div class="row container_at_1665">
+
+                  <div class="d-flex flex-row">
+                      <div class="d-inline-block">
+                          <div class="d-inline-block padding_right_30">
+                              <img src="/assets/images/admin.svg" class="side_nav_icon_extra_big fill_svg_white">
+                          </div>
+                      </div>
+                      <div class="d-inline-block ">
+                          <h1 class="font_white">Welcome to MI Configuration</h1>
+                          <p class="font_white">{{today | date: 'dd MMMM yyyy, hh:mm:ss a'}}</p>
+                      </div>
+                  </div>
+
+              </div>
+
+          </div>
+
+      </div>
+
+</div>
+<!-- Header title  -->
+
+<!-- body graph -->
+
+<!-- body graph -->
+
+<!-- body content -->
+  <div class="container-fluid i margin_bottom_53">
+    <div class="container">
+        <div class="row container_at_1665">
+            <!-- the component bof -->
+            <div class="mi_dashboard_products_wrapper" [class.is-dragging]="isDragging$ | async">
+                <div class="dashboard_grid" dragula="MIDRAG">
+                    <!-- each product -->
+                    <div class="d-flex dashboard_block_wrapper"> 
+                        <!-- <a [routerLink]="['/product']"> -->
+                            <div class="dashboard_triangle_wrapper align-self-end">
+                                <div class="triangle triangle-1">
+                                    <div class="triangle_content_wrapper align-self-baseline" > 
+                                        <div class="row dashboard_arrows_position">
+                                            <div class="d-flex">
+                                                <div class="d-inline-block margin_right_3"><i class="fas fa-caret-right font_light_blue"></i></div>
+                                                <div class="d-inline-block margin_right_3"><i class="fas fa-caret-right font_light_blue"></i></div>
+                                                <div class="d-inline-block margin_right_3"><i class="fas fa-caret-right font_light_blue"></i></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <p class="font_14 text_uppercase line_height_18 product_text_over">Product</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="dashboard_block" [routerLink]="['/product']">
+                                <div class="dashboard_block_circle border-radius_50 d-flex overwrite_circle_position">
+                                    <img src="/assets/images/circle.svg" class="side_nav_icon_extra_big align-self-center float_middle fill_svg_blue">
+                                </div>
+                            </div>
+                        <!-- </a> -->
+                    </div>
+                    <!-- each product -->
+                    <!-- each product -->
+                    <div class="d-flex dashboard_block_wrapper"> 
+                        <!-- <a > [routerLink]="['/fdilinkselector']" -->
+                            <div class="dashboard_triangle_wrapper align-self-end" >
+                                <div class="triangle triangle-1">
+                                    <div class="triangle_content_wrapper align-self-baseline">
+                                        <div class="row dashboard_arrows_position">
+                                            <div class="d-flex">
+                                                <div class="d-inline-block margin_right_3"><i class="fas fa-caret-right font_light_blue"></i></div>
+                                                <div class="d-inline-block margin_right_3"><i class="fas fa-caret-right font_light_blue"></i></div>
+                                                <div class="d-inline-block margin_right_3"><i class="fas fa-caret-right font_light_blue"></i></div>
+                                            </div>
+                                        </div>
+    
+                                        <div class="row">
+                                            <p class="font_14 text_uppercase line_height_18 product_text_over">Group</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                          
+                            <div class="dashboard_block" [routerLink]="['/group']">
+                                <div class="dashboard_block_circle border-radius_50 d-flex overwrite_circle_position">
+                                    <img src="/assets/images/circle.svg" class="side_nav_icon_extra_big align-self-center float_middle fill_svg_blue">
+                                </div>
+                            </div>
+                        <!--</a>-->
+                    </div>
+                    <!-- each product -->
+                    <!-- each product -->
+                    <div class="d-flex dashboard_block_wrapper"> 
+                        <!-- <a > [routerLink]="['/fdilinkselector']" -->
+                            <div class="dashboard_triangle_wrapper align-self-end" >
+                                <div class="triangle triangle-1">
+                                    <div class="triangle_content_wrapper align-self-baseline">
+                                        <div class="row dashboard_arrows_position">
+                                            <div class="d-flex">
+                                                <div class="d-inline-block margin_right_3"><i class="fas fa-caret-right font_light_blue"></i></div>
+                                                <div class="d-inline-block margin_right_3"><i class="fas fa-caret-right font_light_blue"></i></div>
+                                                <div class="d-inline-block margin_right_3"><i class="fas fa-caret-right font_light_blue"></i></div>
+                                            </div>
+                                        </div>
+    
+                                        <div class="row">
+                                            <p class="font_14 text_uppercase line_height_18 product_text_over">Security Layer</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                          
+                            <div class="dashboard_block" [routerLink]="['/securitylayer']">
+                                <div class="dashboard_block_circle border-radius_50 d-flex overwrite_circle_position">
+                                    <img src="/assets/images/circle.svg" class="side_nav_icon_extra_big align-self-center float_middle fill_svg_blue">
+                                </div>
+                            </div>
+                        <!--</a>-->
+                    </div>
+                    <!-- each product -->
+                    <!-- each product -->
+                    <div class="d-flex dashboard_block_wrapper"> 
+                        <!-- <a > [routerLink]="['/fdilinkselector']" -->
+                            <div class="dashboard_triangle_wrapper align-self-end" >
+                                <div class="triangle triangle-1">
+                                    <div class="triangle_content_wrapper align-self-baseline">
+                                        <div class="row dashboard_arrows_position">
+                                            <div class="d-flex">
+                                                <div class="d-inline-block margin_right_3"><i class="fas fa-caret-right font_light_blue"></i></div>
+                                                <div class="d-inline-block margin_right_3"><i class="fas fa-caret-right font_light_blue"></i></div>
+                                                <div class="d-inline-block margin_right_3"><i class="fas fa-caret-right font_light_blue"></i></div>
+                                            </div>
+                                        </div>
+    
+                                        <div class="row">
+                                            <p class="font_14 text_uppercase line_height_18 product_text_over">Menu Group</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                          
+                            <div class="dashboard_block" [routerLink]="['/menugroup']">
+                                <div class="dashboard_block_circle border-radius_50 d-flex overwrite_circle_position">
+                                    <img src="/assets/images/circle.svg" class="side_nav_icon_extra_big align-self-center float_middle fill_svg_blue">
+                                </div>
+                            </div>
+                        <!--</a>-->
+                        </div>
+                    <!-- each product -->
+                    <!-- each product -->
+                    <div class="d-flex dashboard_block_wrapper"> 
+                        <!-- <a > [routerLink]="['/fdilinkselector']" -->
+                            <div class="dashboard_triangle_wrapper align-self-end" >
+                                <div class="triangle triangle-1">
+                                    <div class="triangle_content_wrapper align-self-baseline">
+                                        <div class="row dashboard_arrows_position">
+                                            <div class="d-flex">
+                                                <div class="d-inline-block margin_right_3"><i class="fas fa-caret-right font_light_blue"></i></div>
+                                                <div class="d-inline-block margin_right_3"><i class="fas fa-caret-right font_light_blue"></i></div>
+                                                <div class="d-inline-block margin_right_3"><i class="fas fa-caret-right font_light_blue"></i></div>
+                                            </div>
+                                        </div>
+    
+                                        <div class="row">
+                                            <p class="font_14 text_uppercase line_height_18 product_text_over">Menu Items</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                          
+                            <div class="dashboard_block" [routerLink]="['/menuitem']">
+                                <div class="dashboard_block_circle border-radius_50 d-flex overwrite_circle_position">
+                                    <img src="/assets/images/circle.svg" class="side_nav_icon_extra_big align-self-center float_middle fill_svg_blue">
+                                </div>
+                            </div>
+                        <!--</a>-->
+                    </div>
+                    <!-- each product -->
+                    <!-- each product -->
+                    <div class="d-flex dashboard_block_wrapper"> 
+                        <!-- <a > [routerLink]="['/fdilinkselector']" -->
+                            <div class="dashboard_triangle_wrapper align-self-end" >
+                                <div class="triangle triangle-1">
+                                    <div class="triangle_content_wrapper align-self-baseline">
+                                        <div class="row dashboard_arrows_position">
+                                            <div class="d-flex">
+                                                <div class="d-inline-block margin_right_3"><i class="fas fa-caret-right font_light_blue"></i></div>
+                                                <div class="d-inline-block margin_right_3"><i class="fas fa-caret-right font_light_blue"></i></div>
+                                                <div class="d-inline-block margin_right_3"><i class="fas fa-caret-right font_light_blue"></i></div>
+                                            </div>
+                                        </div>
+    
+                                        <div class="row">
+                                            <p class="font_14 text_uppercase line_height_18 product_text_over">Menu Buttons</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                          
+                            <div class="dashboard_block" [routerLink]="['/menubutton']">
+                                <div class="dashboard_block_circle border-radius_50 d-flex overwrite_circle_position">
+                                    <img src="/assets/images/circle.svg" class="side_nav_icon_extra_big align-self-center float_middle fill_svg_blue">
+                                </div>
+                            </div>
+                        <!--</a>-->
+                    </div>
+                    <!-- each product -->
+                    <!-- each product -->
+                    <div class="d-flex dashboard_block_wrapper"> 
+                        <!-- <a > [routerLink]="['/fdilinkselector']" -->
+                            <div class="dashboard_triangle_wrapper align-self-end" >
+                                <div class="triangle triangle-1">
+                                    <div class="triangle_content_wrapper align-self-baseline">
+                                        <div class="row dashboard_arrows_position">
+                                            <div class="d-flex">
+                                                <div class="d-inline-block margin_right_3"><i class="fas fa-caret-right font_light_blue"></i></div>
+                                                <div class="d-inline-block margin_right_3"><i class="fas fa-caret-right font_light_blue"></i></div>
+                                                <div class="d-inline-block margin_right_3"><i class="fas fa-caret-right font_light_blue"></i></div>
+                                            </div>
+                                        </div>
+    
+                                        <div class="row">
+                                            <p class="font_14 text_uppercase line_height_18 product_text_over">Menu Items Assign to Security Layer</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                          
+                            <div class="dashboard_block" [routerLink]="['/menuitemassign']">
+                                <div class="dashboard_block_circle border-radius_50 d-flex overwrite_circle_position">
+                                    <img src="/assets/images/deposit.svg" class="side_nav_icon_extra_big align-self-center float_middle fill_svg_blue">
+                                </div>
+                            </div>
+                        <!--</a>-->
+                    </div>
+                    <!-- each product -->
+                    <!-- each product -->
+                    <div class="d-flex dashboard_block_wrapper"> 
+                        <!-- <a > [routerLink]="['/fdilinkselector']" -->
+                            <div class="dashboard_triangle_wrapper align-self-end" >
+                                <div class="triangle triangle-1">
+                                    <div class="triangle_content_wrapper align-self-baseline">
+                                        <div class="row dashboard_arrows_position">
+                                            <div class="d-flex">
+                                                <div class="d-inline-block margin_right_3"><i class="fas fa-caret-right font_light_blue"></i></div>
+                                                <div class="d-inline-block margin_right_3"><i class="fas fa-caret-right font_light_blue"></i></div>
+                                                <div class="d-inline-block margin_right_3"><i class="fas fa-caret-right font_light_blue"></i></div>
+                                            </div>
+                                        </div>
+    
+                                        <div class="row">
+                                            <p class="font_14 text_uppercase line_height_18 product_text_over">Menu Buttons Assign to Security Layer</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                          
+                            <div class="dashboard_block" [routerLink]="['/menubuttonsassignseclayer']">
+                                <div class="dashboard_block_circle border-radius_50 d-flex overwrite_circle_position">
+                                    <img src="/assets/images/deposit.svg" class="side_nav_icon_extra_big align-self-center float_middle fill_svg_blue">
+                                </div>
+                            </div>
+                        <!--</a>-->
+                    </div>
+                    <!-- each product -->
+                    <!-- each product -->
+                    <div class="d-flex dashboard_block_wrapper"> 
+                        <!-- <a > [routerLink]="['/fdilinkselector']" -->
+                            <div class="dashboard_triangle_wrapper align-self-end" >
+                                <div class="triangle triangle-1">
+                                    <div class="triangle_content_wrapper align-self-baseline">
+                                        <div class="row dashboard_arrows_position">
+                                            <div class="d-flex">
+                                                <div class="d-inline-block margin_right_3"><i class="fas fa-caret-right font_light_blue"></i></div>
+                                                <div class="d-inline-block margin_right_3"><i class="fas fa-caret-right font_light_blue"></i></div>
+                                                <div class="d-inline-block margin_right_3"><i class="fas fa-caret-right font_light_blue"></i></div>
+                                            </div>
+                                        </div>
+    
+                                        <div class="row">
+                                            <p class="font_14 text_uppercase line_height_18 product_text_over">Security Layer Assign to Groups</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                          
+                            <div class="dashboard_block" [routerLink]="['/seclayerassigngroup']">
+                                <div class="dashboard_block_circle border-radius_50 d-flex overwrite_circle_position">
+                                    <img src="./assets/images/deposit.svg" class="side_nav_icon_extra_big align-self-center float_middle fill_svg_blue">
+                                </div>
+                            </div>
+                        <!--</a>-->
+                    </div>
+                    <!-- each product -->
+                    <!-- each product -->
+                    <div class="d-flex dashboard_block_wrapper"> 
+                        <!-- <a > [routerLink]="['/fdilinkselector']" -->
+                            <div class="dashboard_triangle_wrapper align-self-end" >
+                                <div class="triangle triangle-1">
+                                    <div class="triangle_content_wrapper align-self-baseline">
+                                        <div class="row dashboard_arrows_position">
+                                            <div class="d-flex">
+                                                <div class="d-inline-block margin_right_3"><i class="fas fa-caret-right font_light_blue"></i></div>
+                                                <div class="d-inline-block margin_right_3"><i class="fas fa-caret-right font_light_blue"></i></div>
+                                                <div class="d-inline-block margin_right_3"><i class="fas fa-caret-right font_light_blue"></i></div>
+                                            </div>
+                                        </div>
+    
+                                        <div class="row">
+                                            <p class="font_14 text_uppercase line_height_18 product_text_over">User Assign to Groups</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                          
+                            <div class="dashboard_block" [routerLink]="['/userassigngroup']">
+                                <div class="dashboard_block_circle border-radius_50 d-flex overwrite_circle_position">
+                                    <img src="/assets/images/deposit.svg" class="side_nav_icon_extra_big align-self-center float_middle fill_svg_blue">
+                                </div>
+                            </div>
+                        <!--</a>-->
+                    </div>
+                    <!-- each product -->
+                    <!-- each product -->
+                    <div class="d-flex dashboard_block_wrapper"> 
+                        <!-- <a > [routerLink]="['/fdilinkselector']" -->
+                            <div class="dashboard_triangle_wrapper align-self-end" >
+                                <div class="triangle triangle-1">
+                                    <div class="triangle_content_wrapper align-self-baseline">
+                                        <div class="row dashboard_arrows_position">
+                                            <div class="d-flex">
+                                                <div class="d-inline-block margin_right_3"><i class="fas fa-caret-right font_light_blue"></i></div>
+                                                <div class="d-inline-block margin_right_3"><i class="fas fa-caret-right font_light_blue"></i></div>
+                                                <div class="d-inline-block margin_right_3"><i class="fas fa-caret-right font_light_blue"></i></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <p class="font_14 text_uppercase line_height_18 product_text_over">User Assign to Security Layers</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="dashboard_block" [routerLink]="['/userassignseclayer']">
+                                <div class="dashboard_block_circle border-radius_50 d-flex overwrite_circle_position">
+                                    <img src="/assets/images/deposit.svg" class="side_nav_icon_extra_big align-self-center float_middle fill_svg_blue">
+                                </div>
+                            </div>
+                        <!--</a>-->
+                    </div>
+                    <!-- each product -->
+
+                </div>
+            </div>
+            <!-- the component eof -->
+        </div>
+    </div>
+</div>
+<!-- body content -->
+
+<!-- footer graph -->
+<app-footer class="footer_position"></app-footer>
+<!-- footer graph -->
+  
+
+<app-right-menu></app-right-menu>
